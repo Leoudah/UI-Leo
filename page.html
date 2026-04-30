@@ -1,486 +1,249 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sisakti+ — Universitas Udayana</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --bg: #F5F3EE;
-    --surface: #FFFFFF;
-    --surface2: #EEEAE2;
-    --border: #D8D3C8;
-    --border-light: #E8E4DC;
-    --text: #1A1714;
-    --text-2: #5C5750;
-    --text-3: #9A9489;
-    --accent: #1B4D3E;
-    --accent-light: #E8F0EC;
-    --accent-mid: #4A8C72;
-    --gold: #B8860B;
-    --gold-light: #FDF6E3;
-    --red: #8B2020;
-    --red-light: #FCEAEA;
-    --amber: #92570A;
-    --amber-light: #FDF3E3;
-    --blue: #1A3A5C;
-    --blue-light: #E8EFF7;
-    --radius: 10px;
-    --radius-lg: 16px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
-    --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
-  }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  .wrap{font-family:'DM Sans',sans-serif;background:#F5F3EE;width:1280px;color:#1A1714;}
+  .page-section{display:flex;min-height:100vh;border-bottom:4px solid #D8D3C8;position:relative;}
+  .page-label{position:absolute;top:0;right:0;background:#1A1714;color:#fff;font-size:10px;font-weight:600;padding:4px 10px;letter-spacing:1px;text-transform:uppercase;z-index:10;}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'DM Sans', sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+  .sidebar{width:240px;background:#1B4D3E;min-height:100vh;flex-shrink:0;display:flex;flex-direction:column;}
+  .sidebar-logo{padding:24px 20px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .logo-text{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#fff;letter-spacing:-0.5px;}
+  .logo-sub{font-size:11px;color:rgba(255,255,255,0.55);font-weight:400;margin-top:2px;letter-spacing:0.5px;text-transform:uppercase;}
+  .role-pill{margin:14px 20px 0;background:rgba(255,255,255,0.12);border-radius:6px;padding:6px 10px;font-size:11px;color:rgba(255,255,255,0.8);font-weight:500;display:flex;align-items:center;gap:6px;}
+  .role-dot{width:6px;height:6px;border-radius:50%;background:#7ECBA3;flex-shrink:0;}
+  .nav{flex:1;padding:16px 12px;}
+  .nav-section{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;padding:0 8px;margin-bottom:6px;margin-top:16px;font-weight:500;}
+  .nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;margin-bottom:2px;font-size:13px;color:rgba(255,255,255,0.72);font-weight:400;}
+  .nav-item.active{background:rgba(255,255,255,0.16);color:#fff;font-weight:500;}
+  .nav-icon{font-size:15px;width:18px;text-align:center;opacity:0.9;}
+  .nav-badge{margin-left:auto;background:#E05C2A;color:#fff;font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;}
+  .sidebar-footer{padding:16px 12px 20px;border-top:1px solid rgba(255,255,255,0.1);}
+  .user-info{display:flex;align-items:center;gap:10px;padding:8px 10px;}
+  .user-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
+  .user-name{font-size:12px;color:rgba(255,255,255,0.9);font-weight:500;}
+  .user-nim{font-size:10px;color:rgba(255,255,255,0.45);}
+  .btn-logout{width:100%;padding:7px;background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:8px;font-size:12px;font-family:inherit;cursor:default;margin-top:8px;text-align:center;}
 
-  /* ── LAYOUT ── */
-  .app { display:flex; min-height:100vh; }
+  .main{flex:1;display:flex;flex-direction:column;}
+  .topbar{background:#fff;border-bottom:1px solid #E8E4DC;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;}
+  .page-title{font-size:16px;font-weight:600;color:#1A1714;}
+  .page-subtitle{font-size:12px;color:#9A9489;margin-top:1px;}
+  .topbar-right{display:flex;align-items:center;gap:10px;}
+  .notif-btn{width:36px;height:36px;border-radius:8px;border:1px solid #D8D3C8;background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;}
+  .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:#E05C2A;border:2px solid #fff;}
+  .btn-primary{background:#1B4D3E;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:default;display:flex;align-items:center;gap:6px;}
+  .btn-outline{background:transparent;color:#5C5750;border:1px solid #D8D3C8;padding:8px 14px;border-radius:8px;font-size:13px;cursor:default;}
+  .content{padding:28px;flex:1;}
 
-  /* SIDEBAR */
-  .sidebar {
-    width:240px; background:var(--accent); min-height:100vh; position:fixed; top:0; left:0;
-    display:flex; flex-direction:column; z-index:100;
-    transition: transform 0.3s ease;
-  }
-  .sidebar-logo {
-    padding:24px 20px 20px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-  }
-  .logo-text { font-family:'Fraunces', serif; font-size:22px; font-weight:600; color:#fff; letter-spacing:-0.5px; }
-  .logo-sub { font-size:11px; color:rgba(255,255,255,0.55); font-weight:400; margin-top:2px; letter-spacing:0.5px; text-transform:uppercase; }
-  .role-pill {
-    margin:14px 20px 0;
-    background:rgba(255,255,255,0.12);
-    border-radius:6px; padding:6px 10px;
-    font-size:11px; color:rgba(255,255,255,0.8); font-weight:500;
-    display:flex; align-items:center; gap:6px;
-  }
-  .role-dot { width:6px; height:6px; border-radius:50%; background:#7ECBA3; flex-shrink:0; }
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+  .metric-card{background:#fff;border-radius:16px;border:1px solid #E8E4DC;padding:18px 20px;position:relative;overflow:hidden;}
+  .metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .metric-card.green::before{background:#4A8C72;}
+  .metric-card.gold::before{background:#B8860B;}
+  .metric-card.red::before{background:#C0392B;}
+  .metric-card.blue::before{background:#2563EB;}
+  .m-label{font-size:11px;color:#9A9489;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+  .m-val{font-size:28px;font-weight:600;color:#1A1714;font-family:'Fraunces',serif;line-height:1;}
+  .m-sub{font-size:12px;color:#9A9489;margin-top:6px;}
+  .m-sub.up{color:#4A8C72;}
+  .m-sub.down{color:#C0392B;}
+  .m-sub.warn{color:#92570A;}
+  .m-icon{position:absolute;bottom:14px;right:16px;font-size:28px;opacity:0.12;}
 
-  .nav { flex:1; padding:16px 12px; }
-  .nav-section { font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; padding:0 8px; margin-bottom:6px; margin-top:16px; font-weight:500; }
-  .nav-item {
-    display:flex; align-items:center; gap:10px;
-    padding:9px 10px; border-radius:8px; margin-bottom:2px;
-    font-size:13px; color:rgba(255,255,255,0.72); cursor:pointer;
-    transition:all 0.15s; text-decoration:none; font-weight:400;
-  }
-  .nav-item:hover { background:rgba(255,255,255,0.1); color:#fff; }
-  .nav-item.active { background:rgba(255,255,255,0.16); color:#fff; font-weight:500; }
-  .nav-icon { font-size:15px; width:18px; text-align:center; opacity:0.9; }
-  .nav-badge { margin-left:auto; background:#E05C2A; color:#fff; font-size:10px; font-weight:600; padding:1px 6px; border-radius:10px; }
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .card{background:#fff;border-radius:16px;border:1px solid #E8E4DC;padding:20px;}
+  .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .card-title{font-size:14px;font-weight:600;color:#1A1714;}
+  .card-action{font-size:12px;color:#4A8C72;font-weight:500;}
 
-  .sidebar-footer {
-    padding:16px 12px 20px; border-top:1px solid rgba(255,255,255,0.1);
-  }
-  .user-info { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:8px; }
-  .user-avatar {
-    width:32px; height:32px; border-radius:50%;
-    background:rgba(255,255,255,0.2);
-    display:flex; align-items:center; justify-content:center;
-    font-size:12px; font-weight:600; color:#fff; flex-shrink:0;
-  }
-  .user-name { font-size:12px; color:rgba(255,255,255,0.9); font-weight:500; }
-  .user-nim { font-size:10px; color:rgba(255,255,255,0.45); }
+  .prog-row{margin-bottom:12px;}
+  .prog-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;}
+  .prog-top .pl{color:#5C5750;}
+  .prog-top .pr{font-weight:500;color:#1A1714;}
+  .prog-bg{background:#E8E4DC;border-radius:100px;height:7px;overflow:hidden;}
+  .prog-fill{height:100%;border-radius:100px;}
 
-  /* MAIN CONTENT */
-  .main { margin-left:240px; flex:1; display:flex; flex-direction:column; min-height:100vh; }
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  thead th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#9A9489;padding:10px 14px;text-align:left;border-bottom:1px solid #E8E4DC;background:#EEEAE2;}
+  tbody td{padding:12px 14px;border-bottom:1px solid #E8E4DC;color:#5C5750;vertical-align:middle;}
+  tbody tr:last-child td{border-bottom:none;}
+  .td-name{color:#1A1714;font-weight:500;}
 
-  /* TOPBAR */
-  .topbar {
-    background:var(--surface); border-bottom:1px solid var(--border-light);
-    padding:14px 28px; display:flex; align-items:center; justify-content:space-between;
-    position:sticky; top:0; z-index:50;
-  }
-  .page-title { font-size:16px; font-weight:600; color:var(--text); }
-  .page-subtitle { font-size:12px; color:var(--text-3); margin-top:1px; }
-  .topbar-right { display:flex; align-items:center; gap:10px; }
-  .notif-btn {
-    width:36px; height:36px; border-radius:8px; border:1px solid var(--border);
-    background:var(--surface); cursor:pointer; display:flex; align-items:center; justify-content:center;
-    font-size:16px; position:relative; transition:all 0.15s;
-  }
-  .notif-btn:hover { background:var(--surface2); }
-  .notif-btn .dot { position:absolute; top:7px; right:7px; width:7px; height:7px; border-radius:50%; background:#E05C2A; border:2px solid #fff; }
-  .btn-primary {
-    background:var(--accent); color:#fff; border:none; padding:8px 16px;
-    border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; font-family:inherit;
-    transition:all 0.15s; display:flex; align-items:center; gap:6px;
-  }
-  .btn-primary:hover { background:#143D31; }
-  .btn-outline {
-    background:transparent; color:var(--text-2); border:1px solid var(--border);
-    padding:8px 14px; border-radius:8px; font-size:13px; font-weight:400; cursor:pointer;
-    font-family:inherit; transition:all 0.15s;
-  }
-  .btn-outline:hover { background:var(--surface2); }
+  .badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:100px;}
+  .badge-green{background:#E8F0EC;color:#1B4D3E;}
+  .badge-amber{background:#FDF3E3;color:#92570A;}
+  .badge-red{background:#FCEAEA;color:#8B2020;}
+  .badge-blue{background:#E8EFF7;color:#1A3A5C;}
+  .badge-gray{background:#EEEAE2;color:#9A9489;}
 
-  /* PAGE CONTENT */
-  .content { padding:28px; flex:1; }
+  .act-bars{display:flex;align-items:flex-end;gap:6px;height:80px;}
+  .act-bar{flex:1;border-radius:4px 4px 0 0;background:#E8E4DC;}
+  .act-bar.hi{background:#4A8C72;}
+  .act-months{display:flex;gap:6px;margin-top:6px;}
+  .act-months span{flex:1;text-align:center;font-size:10px;color:#9A9489;}
 
-  /* VIEWS */
-  .view { display:none; }
-  .view.active { display:block; }
+  .notif-list .ni{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #E8E4DC;align-items:flex-start;}
+  .notif-list .ni:last-child{border-bottom:none;}
+  .ni-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .ni-text{font-size:13px;color:#5C5750;line-height:1.5;}
+  .ni-text strong{color:#1A1714;font-weight:500;}
+  .ni-time{font-size:11px;color:#9A9489;margin-top:2px;}
 
-  /* METRIC CARDS */
-  .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
-  .metric-card {
-    background:var(--surface); border-radius:var(--radius-lg); border:1px solid var(--border-light);
-    padding:18px 20px; position:relative; overflow:hidden;
-  }
-  .metric-card::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:3px;
-  }
-  .metric-card.green::before { background:var(--accent-mid); }
-  .metric-card.gold::before { background:var(--gold); }
-  .metric-card.red::before { background:#C0392B; }
-  .metric-card.blue::before { background:#2563EB; }
-  .m-label { font-size:11px; color:var(--text-3); font-weight:500; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
-  .m-val { font-size:28px; font-weight:600; color:var(--text); font-family:'Fraunces',serif; line-height:1; }
-  .m-sub { font-size:12px; color:var(--text-3); margin-top:6px; }
-  .m-sub.up { color:var(--accent-mid); }
-  .m-sub.down { color:#C0392B; }
-  .m-sub.warn { color:var(--amber); }
-  .m-icon { position:absolute; bottom:14px; right:16px; font-size:28px; opacity:0.12; }
+  .dl-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #E8E4DC;font-size:13px;}
+  .dl-item:last-child{border-bottom:none;}
+  .dl-chip{font-size:11px;font-weight:500;padding:3px 9px;border-radius:100px;}
+  .dl-chip.urgent{background:#FCEAEA;color:#8B2020;}
+  .dl-chip.soon{background:#FDF3E3;color:#92570A;}
+  .dl-chip.ok{background:#E8F0EC;color:#1B4D3E;}
 
-  /* GRID */
-  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
-  .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px; }
+  .upload-zone{border:2px dashed #D8D3C8;border-radius:16px;padding:32px;text-align:center;background:#fff;margin-bottom:20px;}
+  .upload-icon{font-size:32px;margin-bottom:10px;}
+  .upload-title{font-size:14px;font-weight:500;color:#1A1714;margin-bottom:4px;}
+  .upload-sub{font-size:12px;color:#9A9489;}
+  .form-group{margin-bottom:16px;}
+  .form-label{display:block;font-size:12px;font-weight:500;color:#5C5750;margin-bottom:6px;letter-spacing:0.3px;text-transform:uppercase;}
+  .form-input{width:100%;padding:10px 13px;border:1px solid #D8D3C8;border-radius:8px;font-size:13px;font-family:inherit;color:#1A1714;background:#fff;}
 
-  /* CARD */
-  .card {
-    background:var(--surface); border-radius:var(--radius-lg);
-    border:1px solid var(--border-light); padding:20px;
-  }
-  .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
-  .card-title { font-size:14px; font-weight:600; color:var(--text); }
-  .card-action { font-size:12px; color:var(--accent-mid); cursor:pointer; font-weight:500; }
-  .card-action:hover { color:var(--accent); }
+  .tabs{display:flex;gap:0;border-bottom:1px solid #E8E4DC;margin-bottom:20px;}
+  .tab-btn{padding:10px 18px;font-size:13px;color:#9A9489;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;font-weight:400;}
+  .tab-btn.active{color:#1B4D3E;border-bottom-color:#1B4D3E;font-weight:500;}
 
-  /* PROGRESS */
-  .prog-row { margin-bottom:12px; }
-  .prog-top { display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px; }
-  .prog-top .pl { color:var(--text-2); }
-  .prog-top .pr { font-weight:500; color:var(--text); }
-  .prog-bg { background:var(--border-light); border-radius:100px; height:7px; overflow:hidden; }
-  .prog-fill { height:100%; border-radius:100px; }
+  .queue-item{display:flex;gap:14px;padding:14px 16px;border:1px solid #E8E4DC;border-radius:10px;margin-bottom:8px;background:#fff;align-items:center;}
+  .qi-avatar{width:38px;height:38px;border-radius:10px;background:#E8F0EC;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:#1B4D3E;flex-shrink:0;}
+  .qi-info{flex:1;min-width:0;}
+  .qi-name{font-size:13px;font-weight:500;color:#1A1714;}
+  .qi-cert{font-size:12px;color:#9A9489;margin-top:2px;}
+  .qi-poin{font-size:12px;font-weight:600;color:#1B4D3E;margin:0 12px;}
+  .qi-actions{display:flex;gap:6px;flex-shrink:0;}
+  .btn-approve{background:#E8F0EC;color:#1B4D3E;border:none;padding:7px 13px;border-radius:7px;font-size:12px;font-weight:500;cursor:default;}
+  .btn-reject{background:#FCEAEA;color:#8B2020;border:none;padding:7px 13px;border-radius:7px;font-size:12px;font-weight:500;cursor:default;}
 
-  /* TABLE */
-  .table-wrap { overflow-x:auto; }
-  table { width:100%; border-collapse:collapse; font-size:13px; }
-  thead th { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-3); padding:10px 14px; text-align:left; border-bottom:1px solid var(--border-light); background:var(--surface2); }
-  thead th:first-child { border-radius:8px 0 0 0; }
-  thead th:last-child { border-radius:0 8px 0 0; }
-  tbody td { padding:12px 14px; border-bottom:1px solid var(--border-light); color:var(--text-2); vertical-align:middle; }
-  tbody tr:last-child td { border-bottom:none; }
-  tbody tr:hover td { background:#FAFAF8; }
-  .td-name { color:var(--text); font-weight:500; }
+  .sa-big{background:#1B4D3E;border-radius:16px;padding:24px;color:#fff;}
+  .sb-val{font-family:'Fraunces',serif;font-size:44px;font-weight:600;line-height:1;}
+  .sb-label{font-size:13px;opacity:0.7;margin-top:6px;}
+  .sb-sub{font-size:12px;opacity:0.55;margin-top:4px;}
 
-  /* BADGE */
-  .badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:500; padding:3px 9px; border-radius:100px; }
-  .badge-green { background:var(--accent-light); color:var(--accent); }
-  .badge-amber { background:var(--amber-light); color:var(--amber); }
-  .badge-red { background:var(--red-light); color:var(--red); }
-  .badge-blue { background:var(--blue-light); color:var(--blue); }
-  .badge-gray { background:var(--surface2); color:var(--text-3); }
+  .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#F5F3EE;padding:20px;}
+  .login-card{background:#fff;border-radius:20px;border:1px solid #E8E4DC;padding:44px 40px;width:100%;max-width:400px;}
+  .login-logo{font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:#1B4D3E;margin-bottom:4px;}
+  .login-tagline{font-size:13px;color:#9A9489;margin-bottom:32px;}
+  .login-tabs{display:flex;gap:4px;background:#EEEAE2;border-radius:10px;padding:4px;margin-bottom:28px;}
+  .login-tab{flex:1;padding:8px;border-radius:7px;font-size:13px;font-weight:400;cursor:default;text-align:center;color:#9A9489;border:none;background:none;font-family:inherit;}
+  .login-tab.active{background:#fff;color:#1A1714;font-weight:500;}
+  .btn-full{width:100%;padding:12px;background:#1B4D3E;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:default;font-family:inherit;margin-top:8px;}
+  .form-divider{text-align:center;font-size:12px;color:#9A9489;margin:16px 0;position:relative;}
+  .form-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#E8E4DC;}
+  .form-divider span{background:#fff;padding:0 12px;position:relative;}
 
-  /* ACTIVITY BARS */
-  .act-bars { display:flex; align-items:flex-end; gap:6px; height:80px; }
-  .act-bar { flex:1; border-radius:4px 4px 0 0; background:var(--border-light); transition:height 0.3s; }
-  .act-bar.hi { background:var(--accent-mid); }
-  .act-months { display:flex; gap:6px; margin-top:6px; }
-  .act-months span { flex:1; text-align:center; font-size:10px; color:var(--text-3); }
-
-  /* NOTIF LIST */
-  .notif-list .ni {
-    display:flex; gap:12px; padding:11px 0; border-bottom:1px solid var(--border-light);
-    align-items:flex-start;
-  }
-  .notif-list .ni:last-child { border-bottom:none; }
-  .ni-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:5px; }
-  .ni-text { font-size:13px; color:var(--text-2); line-height:1.5; }
-  .ni-text strong { color:var(--text); font-weight:500; }
-  .ni-time { font-size:11px; color:var(--text-3); margin-top:2px; }
-
-  /* DEADLINE */
-  .dl-item { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border-light); font-size:13px; }
-  .dl-item:last-child { border-bottom:none; }
-  .dl-name { color:var(--text); font-weight:400; }
-  .dl-chip { font-size:11px; font-weight:500; padding:3px 9px; border-radius:100px; }
-  .dl-chip.urgent { background:#FCEAEA; color:var(--red); }
-  .dl-chip.soon { background:var(--amber-light); color:var(--amber); }
-  .dl-chip.ok { background:var(--accent-light); color:var(--accent); }
-
-  /* CERT UPLOAD CARD */
-  .upload-zone {
-    border:2px dashed var(--border); border-radius:var(--radius-lg);
-    padding:32px; text-align:center; cursor:pointer; transition:all 0.2s;
-    background:var(--surface);
-  }
-  .upload-zone:hover { border-color:var(--accent-mid); background:var(--accent-light); }
-  .upload-icon { font-size:32px; margin-bottom:10px; }
-  .upload-title { font-size:14px; font-weight:500; color:var(--text); margin-bottom:4px; }
-  .upload-sub { font-size:12px; color:var(--text-3); }
-
-  /* FORM */
-  .form-group { margin-bottom:16px; }
-  .form-label { display:block; font-size:12px; font-weight:500; color:var(--text-2); margin-bottom:6px; letter-spacing:0.3px; text-transform:uppercase; }
-  .form-input {
-    width:100%; padding:10px 13px; border:1px solid var(--border);
-    border-radius:8px; font-size:13px; font-family:inherit; color:var(--text);
-    background:var(--surface); outline:none; transition:all 0.15s;
-  }
-  .form-input:focus { border-color:var(--accent-mid); box-shadow:0 0 0 3px rgba(74,140,114,0.12); }
-  select.form-input { cursor:pointer; }
-
-  /* LOGIN PAGE */
-  .login-wrap {
-    min-height:100vh; display:flex; align-items:center; justify-content:center;
-    background:var(--bg); padding:20px;
-  }
-  .login-card {
-    background:var(--surface); border-radius:20px; border:1px solid var(--border-light);
-    padding:44px 40px; width:100%; max-width:400px; box-shadow:var(--shadow-md);
-  }
-  .login-logo { font-family:'Fraunces',serif; font-size:28px; font-weight:600; color:var(--accent); margin-bottom:4px; }
-  .login-tagline { font-size:13px; color:var(--text-3); margin-bottom:32px; }
-  .login-tabs { display:flex; gap:4px; background:var(--surface2); border-radius:10px; padding:4px; margin-bottom:28px; }
-  .login-tab {
-    flex:1; padding:8px; border-radius:7px; font-size:13px; font-weight:400;
-    cursor:pointer; text-align:center; color:var(--text-3); transition:all 0.15s; border:none; background:none; font-family:inherit;
-  }
-  .login-tab.active { background:var(--surface); color:var(--text); font-weight:500; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
-  .btn-full { width:100%; padding:12px; background:var(--accent); color:#fff; border:none; border-radius:10px; font-size:14px; font-weight:500; cursor:pointer; font-family:inherit; margin-top:8px; transition:all 0.15s; letter-spacing:0.2px; }
-  .btn-full:hover { background:#143D31; }
-  .form-divider { text-align:center; font-size:12px; color:var(--text-3); margin:16px 0; position:relative; }
-  .form-divider::before { content:''; position:absolute; top:50%; left:0; right:0; height:1px; background:var(--border-light); }
-  .form-divider span { background:var(--surface); padding:0 12px; position:relative; }
-
-  /* SKP TRACKER */
-  .skp-ring-wrap { display:flex; align-items:center; gap:24px; padding:8px 0; }
-  .ring-svg { flex-shrink:0; }
-  .ring-info .ri-val { font-family:'Fraunces',serif; font-size:32px; font-weight:600; color:var(--text); line-height:1; }
-  .ring-info .ri-label { font-size:12px; color:var(--text-3); margin-top:4px; }
-  .ring-info .ri-needed { font-size:13px; color:var(--amber); margin-top:8px; font-weight:500; }
-
-  /* VALIDATION QUEUE (admin) */
-  .queue-item {
-    display:flex; gap:14px; padding:14px 16px; border:1px solid var(--border-light);
-    border-radius:var(--radius); margin-bottom:8px; background:var(--surface);
-    transition:all 0.15s; align-items:center;
-  }
-  .queue-item:hover { border-color:var(--border); box-shadow:var(--shadow); }
-  .qi-avatar { width:38px; height:38px; border-radius:10px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-weight:600; font-size:13px; color:var(--accent); flex-shrink:0; }
-  .qi-info { flex:1; min-width:0; }
-  .qi-name { font-size:13px; font-weight:500; color:var(--text); }
-  .qi-cert { font-size:12px; color:var(--text-3); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .qi-poin { font-size:12px; font-weight:600; color:var(--accent); margin:0 12px; }
-  .qi-actions { display:flex; gap:6px; flex-shrink:0; }
-  .btn-approve { background:var(--accent-light); color:var(--accent); border:none; padding:7px 13px; border-radius:7px; font-size:12px; font-weight:500; cursor:pointer; font-family:inherit; transition:all 0.15s; }
-  .btn-approve:hover { background:var(--accent); color:#fff; }
-  .btn-reject { background:var(--red-light); color:var(--red); border:none; padding:7px 13px; border-radius:7px; font-size:12px; font-weight:500; cursor:pointer; font-family:inherit; transition:all 0.15s; }
-  .btn-reject:hover { background:var(--red); color:#fff; }
-
-  /* TABS */
-  .tabs { display:flex; gap:0; border-bottom:1px solid var(--border-light); margin-bottom:20px; }
-  .tab-btn { padding:10px 18px; font-size:13px; color:var(--text-3); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; font-family:inherit; background:none; border-top:none; border-left:none; border-right:none; transition:all 0.15s; font-weight:400; }
-  .tab-btn.active { color:var(--accent); border-bottom-color:var(--accent); font-weight:500; }
-  .tab-btn:hover:not(.active) { color:var(--text-2); }
-
-  /* ROLE SWITCHER (demo) */
-  .role-switcher {
-    position:fixed; bottom:20px; right:20px; z-index:200;
-    background:var(--text); color:#fff; border-radius:12px; padding:12px 16px;
-    box-shadow:var(--shadow-md); font-size:12px;
-  }
-  .rs-title { font-size:10px; text-transform:uppercase; letter-spacing:1px; opacity:0.5; margin-bottom:8px; }
-  .rs-btns { display:flex; gap:6px; }
-  .rs-btn { padding:6px 12px; border-radius:7px; font-size:11px; cursor:pointer; font-family:inherit; border:1px solid rgba(255,255,255,0.2); background:transparent; color:#fff; transition:all 0.15s; font-weight:400; }
-  .rs-btn.active { background:rgba(255,255,255,0.18); font-weight:600; }
-  .rs-btn:hover:not(.active) { background:rgba(255,255,255,0.1); }
-
-  /* SUPERADMIN STAT */
-  .sa-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
-  .sa-big { background:var(--accent); border-radius:var(--radius-lg); padding:24px; color:#fff; }
-  .sa-big .sb-val { font-family:'Fraunces',serif; font-size:44px; font-weight:600; line-height:1; }
-  .sa-big .sb-label { font-size:13px; opacity:0.7; margin-top:6px; }
-  .sa-big .sb-sub { font-size:12px; opacity:0.55; margin-top:4px; }
-
-  /* EMPTY STATE */
-  .empty { text-align:center; padding:40px 20px; color:var(--text-3); font-size:13px; }
-  .empty .ei { font-size:32px; margin-bottom:10px; }
-
-  /* CERT DETAIL MODAL */
-  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:300; align-items:center; justify-content:center; padding:20px; }
-  .modal-overlay.open { display:flex; }
-  .modal { background:var(--surface); border-radius:20px; padding:28px; width:100%; max-width:460px; box-shadow:var(--shadow-md); }
-  .modal-title { font-size:16px; font-weight:600; color:var(--text); margin-bottom:20px; }
-  .modal-actions { display:flex; gap:8px; margin-top:20px; }
-  .modal-close { position:absolute; top:16px; right:16px; cursor:pointer; opacity:0.5; font-size:20px; }
-
-  /* ANIMATIONS */
-  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
-  .view.active { animation: fadeIn 0.2s ease; }
-  .metric-card { transition: box-shadow 0.15s; }
-  .metric-card:hover { box-shadow: var(--shadow); }
-
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width:5px; height:5px; }
-  ::-webkit-scrollbar-track { background:transparent; }
-  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:10px; }
+  .notif-card{background:#fff;border-radius:16px;border:1px solid #E8E4DC;padding:20px;max-width:600px;}
+  .sa-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:24px;}
+  .settings-wrap{max-width:600px;}
 </style>
-</head>
-<body>
 
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="login-wrap">
-  <div class="login-card">
-    <div class="login-logo">Sisakti+</div>
-    <div class="login-tagline">Sistem Validasi SKP — Universitas Udayana</div>
-    <div class="login-tabs">
-      <button class="login-tab active" onclick="setLoginRole('mahasiswa',this)">Mahasiswa</button>
-      <button class="login-tab" onclick="setLoginRole('admin',this)">Admin BEM</button>
-      <button class="login-tab" onclick="setLoginRole('superadmin',this)">Superadmin</button>
+<div class="wrap">
+
+  <!-- PAGE 1: LOGIN -->
+  <div style="position:relative;border-bottom:4px solid #D8D3C8;">
+    <div class="page-label">01 — LOGIN</div>
+    <div class="login-wrap">
+      <div class="login-card">
+        <div class="login-logo">Sisakti+</div>
+        <div class="login-tagline">Sistem Validasi SKP — Universitas Udayana</div>
+        <div class="login-tabs">
+          <button class="login-tab active">Mahasiswa</button>
+          <button class="login-tab">Admin BEM</button>
+          <button class="login-tab">Superadmin</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label">NIM</label>
+          <input class="form-input" placeholder="Masukkan NIM" value="2208561001" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" value="password123" readonly>
+        </div>
+        <button class="btn-full">Masuk ke Sisakti+</button>
+        <div class="form-divider"><span>Universitas Udayana © 2025</span></div>
+      </div>
     </div>
-    <div class="form-group">
-      <label class="form-label" id="loginLabel">NIM</label>
-      <input class="form-input" id="loginUser" placeholder="Masukkan NIM" type="text" value="2208561001">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Password</label>
-      <input class="form-input" placeholder="Password" type="password" value="••••••••">
-    </div>
-    <button class="btn-full" onclick="doLogin()">Masuk ke Sisakti+</button>
-    <div class="form-divider"><span>Universitas Udayana © 2025</span></div>
   </div>
-</div>
 
-<!-- MAIN APP -->
-<div id="mainApp" class="app" style="display:none">
-  <!-- SIDEBAR -->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-text">Sisakti+</div>
-      <div class="logo-sub">Universitas Udayana</div>
-      <div class="role-pill" id="rolePill"><div class="role-dot"></div><span id="roleLabel">Mahasiswa</span></div>
+  <!-- PAGE 2: MAHASISWA DASHBOARD -->
+  <div class="page-section">
+    <div class="page-label">02 — MAHASISWA / DASHBOARD</div>
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">Sisakti+</div>
+        <div class="logo-sub">Universitas Udayana</div>
+        <div class="role-pill"><div class="role-dot"></div><span>Mahasiswa</span></div>
+      </div>
+      <div class="nav">
+        <a class="nav-item active"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Sertifikat</div>
+        <a class="nav-item"><span class="nav-icon">↑</span>Upload Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">☰</span>Daftar Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">◎</span>Rekap SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi<span class="nav-badge">3</span></a>
+      </div>
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">MA</div>
+          <div><div class="user-name">I Made Arta</div><div class="user-nim">2208561001</div></div>
+        </div>
+        <div class="btn-logout">Keluar</div>
+      </div>
     </div>
-    <div class="nav" id="navItems"></div>
-    <div class="sidebar-footer">
-      <div class="user-info">
-        <div class="user-avatar" id="userAvatar">MA</div>
-        <div>
-          <div class="user-name" id="userName">I Made Arta</div>
-          <div class="user-nim" id="userNim">2208561001</div>
+    <div class="main">
+      <div class="topbar">
+        <div><div class="page-title">Dashboard</div><div class="page-subtitle">Semester Genap 2024/2025</div></div>
+        <div class="topbar-right">
+          <div class="notif-btn">🔔<div class="notif-dot"></div></div>
+          <button class="btn-primary">+ Upload Sertifikat</button>
         </div>
       </div>
-      <div style="margin-top:8px; padding:0 10px;">
-        <button class="btn-outline" style="width:100%; font-size:12px; padding:7px;" onclick="doLogout()">Keluar</button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- MAIN -->
-  <div class="main">
-    <div class="topbar">
-      <div>
-        <div class="page-title" id="pageTitle">Dashboard</div>
-        <div class="page-subtitle" id="pageSubtitle">Semester Genap 2024/2025</div>
-      </div>
-      <div class="topbar-right">
-        <div class="notif-btn" onclick="showView('notifikasi')">🔔<div class="dot"></div></div>
-        <button class="btn-primary" id="topbarAction" onclick="showView('upload')">+ Upload Sertifikat</button>
-      </div>
-    </div>
-
-    <div class="content">
-      <!-- ─── VIEWS ─── -->
-
-      <!-- MAHASISWA DASHBOARD -->
-      <div id="view-dashboard" class="view active">
+      <div class="content">
         <div class="metrics">
-          <div class="metric-card green">
-            <div class="m-label">Total SKP</div>
-            <div class="m-val">82</div>
-            <div class="m-sub up">↑ 68% tercapai</div>
-            <div class="m-icon">🏅</div>
-          </div>
-          <div class="metric-card gold">
-            <div class="m-label">Pending</div>
-            <div class="m-val">3</div>
-            <div class="m-sub warn">menunggu validasi</div>
-            <div class="m-icon">⏳</div>
-          </div>
-          <div class="metric-card blue">
-            <div class="m-label">Disetujui</div>
-            <div class="m-val">14</div>
-            <div class="m-sub up">dari 17 diajukan</div>
-            <div class="m-icon">✅</div>
-          </div>
-          <div class="metric-card red">
-            <div class="m-label">Ditolak</div>
-            <div class="m-val">2</div>
-            <div class="m-sub down">perlu diperbaiki</div>
-            <div class="m-icon">❌</div>
-          </div>
+          <div class="metric-card green"><div class="m-label">Total SKP</div><div class="m-val">82</div><div class="m-sub up">↑ 68% tercapai</div><div class="m-icon">🏅</div></div>
+          <div class="metric-card gold"><div class="m-label">Pending</div><div class="m-val">3</div><div class="m-sub warn">menunggu validasi</div><div class="m-icon">⏳</div></div>
+          <div class="metric-card blue"><div class="m-label">Disetujui</div><div class="m-val">14</div><div class="m-sub up">dari 17 diajukan</div><div class="m-icon">✅</div></div>
+          <div class="metric-card red"><div class="m-label">Ditolak</div><div class="m-val">2</div><div class="m-sub down">perlu diperbaiki</div><div class="m-icon">❌</div></div>
         </div>
         <div class="grid2">
           <div class="card">
-            <div class="card-header"><span class="card-title">Progress per Kategori</span><span class="card-action" onclick="showView('skp')">Lihat semua →</span></div>
-            <div class="prog-row">
-              <div class="prog-top"><span class="pl">Wajib (PKKMB, PKM, dll)</span><span class="pr">30 / 30</span></div>
-              <div class="prog-bg"><div class="prog-fill" style="width:100%;background:#1D9E75;"></div></div>
-            </div>
-            <div class="prog-row">
-              <div class="prog-top"><span class="pl">Organisasi & Kepanitiaan</span><span class="pr">22 / 30</span></div>
-              <div class="prog-bg"><div class="prog-fill" style="width:73%;background:#378ADD;"></div></div>
-            </div>
-            <div class="prog-row">
-              <div class="prog-top"><span class="pl">Seminar & Pelatihan</span><span class="pr">18 / 30</span></div>
-              <div class="prog-bg"><div class="prog-fill" style="width:60%;background:#378ADD;"></div></div>
-            </div>
-            <div class="prog-row">
-              <div class="prog-top"><span class="pl">Prestasi & Kompetisi</span><span class="pr">12 / 20</span></div>
-              <div class="prog-bg"><div class="prog-fill" style="width:60%;background:#EF9F27;"></div></div>
-            </div>
-            <div class="prog-row">
-              <div class="prog-top"><span class="pl">Pengabdian Masyarakat</span><span class="pr" style="color:#C0392B;">0 / 10</span></div>
-              <div class="prog-bg"><div class="prog-fill" style="width:0%;background:#E24B4A;"></div></div>
-            </div>
+            <div class="card-header"><span class="card-title">Progress per Kategori</span><span class="card-action">Lihat semua →</span></div>
+            <div class="prog-row"><div class="prog-top"><span class="pl">Wajib (PKKMB, PKM, dll)</span><span class="pr">30 / 30</span></div><div class="prog-bg"><div class="prog-fill" style="width:100%;background:#1D9E75;"></div></div></div>
+            <div class="prog-row"><div class="prog-top"><span class="pl">Organisasi & Kepanitiaan</span><span class="pr">22 / 30</span></div><div class="prog-bg"><div class="prog-fill" style="width:73%;background:#378ADD;"></div></div></div>
+            <div class="prog-row"><div class="prog-top"><span class="pl">Seminar & Pelatihan</span><span class="pr">18 / 30</span></div><div class="prog-bg"><div class="prog-fill" style="width:60%;background:#378ADD;"></div></div></div>
+            <div class="prog-row"><div class="prog-top"><span class="pl">Prestasi & Kompetisi</span><span class="pr">12 / 20</span></div><div class="prog-bg"><div class="prog-fill" style="width:60%;background:#EF9F27;"></div></div></div>
+            <div class="prog-row"><div class="prog-top"><span class="pl">Pengabdian Masyarakat</span><span class="pr" style="color:#C0392B;">0 / 10</span></div><div class="prog-bg"><div class="prog-fill" style="width:0%;background:#E24B4A;"></div></div></div>
           </div>
           <div class="card">
-            <div class="card-header"><span class="card-title">Sertifikat Terbaru</span><span class="card-action" onclick="showView('sertifikat')">Lihat semua →</span></div>
-            <table>
-              <tbody>
-                <tr><td class="td-name">PKKMB Universitas</td><td><span class="badge badge-green">Disetujui</span></td><td style="text-align:right;font-size:12px;font-weight:600;color:var(--accent);">+10 SKP</td></tr>
-                <tr><td class="td-name">Seminar AI & ML</td><td><span class="badge badge-green">Disetujui</span></td><td style="text-align:right;font-size:12px;font-weight:600;color:var(--accent);">+3 SKP</td></tr>
-                <tr><td class="td-name">Panitia Dies Natalis</td><td><span class="badge badge-amber">Pending</span></td><td style="text-align:right;font-size:12px;color:var(--text-3);">5 SKP</td></tr>
-                <tr><td class="td-name">Lomba Hackathon</td><td><span class="badge badge-amber">Pending</span></td><td style="text-align:right;font-size:12px;color:var(--text-3);">8 SKP</td></tr>
-                <tr><td class="td-name">Workshop Desain UI</td><td><span class="badge badge-red">Ditolak</span></td><td style="text-align:right;font-size:12px;color:var(--text-3);">—</td></tr>
-              </tbody>
-            </table>
+            <div class="card-header"><span class="card-title">Sertifikat Terbaru</span><span class="card-action">Lihat semua →</span></div>
+            <table><tbody>
+              <tr><td class="td-name">PKKMB Universitas</td><td><span class="badge badge-green">Disetujui</span></td><td style="text-align:right;font-size:12px;font-weight:600;color:#1B4D3E;">+10 SKP</td></tr>
+              <tr><td class="td-name">Seminar AI & ML</td><td><span class="badge badge-green">Disetujui</span></td><td style="text-align:right;font-size:12px;font-weight:600;color:#1B4D3E;">+3 SKP</td></tr>
+              <tr><td class="td-name">Panitia Dies Natalis</td><td><span class="badge badge-amber">Pending</span></td><td style="text-align:right;font-size:12px;color:#9A9489;">5 SKP</td></tr>
+              <tr><td class="td-name">Lomba Hackathon</td><td><span class="badge badge-amber">Pending</span></td><td style="text-align:right;font-size:12px;color:#9A9489;">8 SKP</td></tr>
+              <tr><td class="td-name">Workshop Desain UI</td><td><span class="badge badge-red">Ditolak</span></td><td style="text-align:right;font-size:12px;color:#9A9489;">—</td></tr>
+            </tbody></table>
           </div>
         </div>
         <div class="grid2">
           <div class="card">
             <div class="card-header"><span class="card-title">Aktivitas Upload</span></div>
             <div class="act-bars">
-              <div class="act-bar" style="height:30%"></div>
-              <div class="act-bar" style="height:45%"></div>
-              <div class="act-bar" style="height:55%"></div>
-              <div class="act-bar" style="height:40%"></div>
-              <div class="act-bar hi" style="height:72%"></div>
-              <div class="act-bar hi" style="height:88%"></div>
+              <div class="act-bar" style="height:30%"></div><div class="act-bar" style="height:45%"></div><div class="act-bar" style="height:55%"></div><div class="act-bar" style="height:40%"></div><div class="act-bar hi" style="height:72%"></div><div class="act-bar hi" style="height:88%"></div>
             </div>
             <div class="act-months"><span>Nov</span><span>Des</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span></div>
           </div>
           <div class="card">
             <div class="card-header"><span class="card-title">Deadline & Pengingat</span></div>
-            <div class="dl-item"><span class="dl-name">Batas upload SKP wajib</span><span class="dl-chip urgent">3 hari lagi</span></div>
-            <div class="dl-item"><span class="dl-name">Pendaftaran Student Day</span><span class="dl-chip soon">12 Mei</span></div>
-            <div class="dl-item"><span class="dl-name">Validasi periode genap</span><span class="dl-chip ok">31 Mei</span></div>
-            <div class="dl-item"><span class="dl-name">PKM internal Fakultas</span><span class="dl-chip ok">15 Jun</span></div>
+            <div class="dl-item"><span>Batas upload SKP wajib</span><span class="dl-chip urgent">3 hari lagi</span></div>
+            <div class="dl-item"><span>Pendaftaran Student Day</span><span class="dl-chip soon">12 Mei</span></div>
+            <div class="dl-item"><span>Validasi periode genap</span><span class="dl-chip ok">31 Mei</span></div>
+            <div class="dl-item"><span>PKM internal Fakultas</span><span class="dl-chip ok">15 Jun</span></div>
           </div>
         </div>
         <div class="card">
@@ -488,146 +251,169 @@
           <div class="notif-list">
             <div class="ni"><div class="ni-dot" style="background:#1D9E75;"></div><div><div class="ni-text"><strong>Sertifikat Seminar AI disetujui</strong> oleh Admin BEM — 3 SKP ditambahkan ke akun kamu.</div><div class="ni-time">2 jam lalu</div></div></div>
             <div class="ni"><div class="ni-dot" style="background:#C0392B;"></div><div><div class="ni-text"><strong>Workshop Desain UI ditolak</strong> — Alasan: dokumen tidak terbaca. Silakan upload ulang.</div><div class="ni-time">5 jam lalu</div></div></div>
-            <div class="ni"><div class="ni-dot" style="background:#BA7517;"></div><div><div class="ni-text"><strong>Pengingat:</strong> kategori Pengabdian Masyarakat belum ada sertifikat yang dikumpulkan.</div><div class="ni-time">1 hari lalu</div></div></div>
+            <div class="ni"><div class="ni-dot" style="background:#BA7517;"></div><div><div class="ni-text"><strong>Pengingat:</strong> kategori Pengabdian Masyarakat belum ada sertifikat.</div><div class="ni-time">1 hari lalu</div></div></div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- UPLOAD SERTIFIKAT -->
-      <div id="view-upload" class="view">
+  <!-- PAGE 3: UPLOAD SERTIFIKAT -->
+  <div class="page-section">
+    <div class="page-label">03 — MAHASISWA / UPLOAD SERTIFIKAT</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Mahasiswa</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Sertifikat</div>
+        <a class="nav-item active"><span class="nav-icon">↑</span>Upload Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">☰</span>Daftar Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">◎</span>Rekap SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi<span class="nav-badge">3</span></a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">MA</div><div><div class="user-name">I Made Arta</div><div class="user-nim">2208561001</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Upload Sertifikat</div><div class="page-subtitle">Tambah sertifikat baru</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">+ Upload Sertifikat</button></div></div>
+      <div class="content">
         <div style="max-width:560px;">
-          <div class="upload-zone" style="margin-bottom:20px;">
-            <div class="upload-icon">📎</div>
-            <div class="upload-title">Upload Sertifikat</div>
-            <div class="upload-sub">Klik atau drag & drop file PDF / JPG / PNG (maks. 5MB)</div>
-          </div>
+          <div class="upload-zone"><div class="upload-icon">📎</div><div class="upload-title">Upload Sertifikat</div><div class="upload-sub">Klik atau drag & drop file PDF / JPG / PNG (maks. 5MB)</div></div>
           <div class="card">
             <div class="card-title" style="margin-bottom:16px;">Informasi Sertifikat</div>
-            <div class="form-group">
-              <label class="form-label">Nama Kegiatan</label>
-              <input class="form-input" placeholder="Contoh: Seminar Nasional Teknologi 2025">
+            <div class="form-group"><label class="form-label">Nama Kegiatan</label><input class="form-input" placeholder="Contoh: Seminar Nasional Teknologi 2025" readonly></div>
+            <div class="grid2" style="margin-bottom:0;">
+              <div class="form-group"><label class="form-label">Kategori SKP</label><select class="form-input"><option>Seminar & Pelatihan</option></select></div>
+              <div class="form-group"><label class="form-label">Peran</label><select class="form-input"><option>Peserta</option></select></div>
             </div>
             <div class="grid2" style="margin-bottom:0;">
-              <div class="form-group">
-                <label class="form-label">Kategori SKP</label>
-                <select class="form-input">
-                  <option>Seminar & Pelatihan</option>
-                  <option>Organisasi & Kepanitiaan</option>
-                  <option>Prestasi & Kompetisi</option>
-                  <option>Pengabdian Masyarakat</option>
-                  <option>Wajib</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Peran</label>
-                <select class="form-input">
-                  <option>Peserta</option>
-                  <option>Panitia</option>
-                  <option>Pembicara / Pemateri</option>
-                  <option>Juara / Pemenang</option>
-                  <option>Ketua</option>
-                </select>
-              </div>
+              <div class="form-group"><label class="form-label">Tanggal Kegiatan</label><input class="form-input" type="date" readonly></div>
+              <div class="form-group"><label class="form-label">Tingkat</label><select class="form-input"><option>Universitas</option></select></div>
             </div>
-            <div class="grid2" style="margin-bottom:0;">
-              <div class="form-group">
-                <label class="form-label">Tanggal Kegiatan</label>
-                <input class="form-input" type="date">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Tingkat</label>
-                <select class="form-input">
-                  <option>Universitas</option>
-                  <option>Fakultas</option>
-                  <option>Regional / Provinsi</option>
-                  <option>Nasional</option>
-                  <option>Internasional</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Keterangan Tambahan (opsional)</label>
-              <textarea class="form-input" rows="3" placeholder="Tuliskan informasi tambahan jika perlu..."></textarea>
-            </div>
-            <div style="display:flex;gap:8px;margin-top:4px;">
-              <button class="btn-primary" style="flex:1;">Kirim untuk Validasi</button>
-              <button class="btn-outline" onclick="showView('sertifikat')">Batal</button>
-            </div>
+            <div class="form-group"><label class="form-label">Keterangan Tambahan (opsional)</label><textarea class="form-input" rows="3" placeholder="Tuliskan informasi tambahan jika perlu..." readonly></textarea></div>
+            <div style="display:flex;gap:8px;margin-top:4px;"><button class="btn-primary" style="flex:1;">Kirim untuk Validasi</button><button class="btn-outline">Batal</button></div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- DAFTAR SERTIFIKAT -->
-      <div id="view-sertifikat" class="view">
+  <!-- PAGE 4: DAFTAR SERTIFIKAT -->
+  <div class="page-section">
+    <div class="page-label">04 — MAHASISWA / DAFTAR SERTIFIKAT</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Mahasiswa</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Sertifikat</div>
+        <a class="nav-item"><span class="nav-icon">↑</span>Upload Sertifikat</a>
+        <a class="nav-item active"><span class="nav-icon">☰</span>Daftar Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">◎</span>Rekap SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi<span class="nav-badge">3</span></a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">MA</div><div><div class="user-name">I Made Arta</div><div class="user-nim">2208561001</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Daftar Sertifikat</div><div class="page-subtitle">Semua sertifikat yang diajukan</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">+ Upload Sertifikat</button></div></div>
+      <div class="content">
         <div class="tabs">
-          <button class="tab-btn active" onclick="filterSert(this,'all')">Semua (17)</button>
-          <button class="tab-btn" onclick="filterSert(this,'approved')">Disetujui (14)</button>
-          <button class="tab-btn" onclick="filterSert(this,'pending')">Pending (3)</button>
-          <button class="tab-btn" onclick="filterSert(this,'rejected')">Ditolak (2)</button>
+          <button class="tab-btn active">Semua (17)</button>
+          <button class="tab-btn">Disetujui (14)</button>
+          <button class="tab-btn">Pending (3)</button>
+          <button class="tab-btn">Ditolak (2)</button>
         </div>
         <div class="card" style="padding:0;">
-          <div class="table-wrap">
+          <div style="overflow-x:auto;">
             <table>
               <thead><tr><th>Nama Kegiatan</th><th>Kategori</th><th>Tanggal</th><th>Poin</th><th>Status</th><th>Aksi</th></tr></thead>
               <tbody>
-                <tr><td class="td-name">PKKMB Universitas Udayana</td><td><span class="badge badge-blue">Wajib</span></td><td>Aug 2022</td><td style="font-weight:600;color:var(--accent);">+10</td><td><span class="badge badge-green">Disetujui</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
-                <tr><td class="td-name">Ketua PKM Mahasiswa</td><td><span class="badge badge-blue">Wajib</span></td><td>Mar 2023</td><td style="font-weight:600;color:var(--accent);">+15</td><td><span class="badge badge-green">Disetujui</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
-                <tr><td class="td-name">Seminar AI & Machine Learning</td><td><span class="badge badge-gray">Seminar</span></td><td>Jan 2024</td><td style="font-weight:600;color:var(--accent);">+3</td><td><span class="badge badge-green">Disetujui</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
-                <tr><td class="td-name">Panitia Dies Natalis 2024</td><td><span class="badge badge-gray">Kepanitiaan</span></td><td>Feb 2024</td><td style="color:var(--text-3);">5</td><td><span class="badge badge-amber">Pending</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
-                <tr><td class="td-name">Lomba Hackathon FTE 2024</td><td><span class="badge badge-gray">Kompetisi</span></td><td>Mar 2024</td><td style="color:var(--text-3);">8</td><td><span class="badge badge-amber">Pending</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
-                <tr><td class="td-name">Workshop Desain UI/UX</td><td><span class="badge badge-gray">Seminar</span></td><td>Apr 2024</td><td style="color:var(--red);">—</td><td><span class="badge badge-red">Ditolak</span></td><td><button class="btn-primary" style="font-size:11px;padding:5px 10px;" onclick="showView('upload')">Upload Ulang</button></td></tr>
+                <tr><td class="td-name">PKKMB Universitas Udayana</td><td><span class="badge badge-blue">Wajib</span></td><td>Aug 2022</td><td style="font-weight:600;color:#1B4D3E;">+10</td><td><span class="badge badge-green">Disetujui</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
+                <tr><td class="td-name">Ketua PKM Mahasiswa</td><td><span class="badge badge-blue">Wajib</span></td><td>Mar 2023</td><td style="font-weight:600;color:#1B4D3E;">+15</td><td><span class="badge badge-green">Disetujui</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
+                <tr><td class="td-name">Seminar AI & Machine Learning</td><td><span class="badge badge-gray">Seminar</span></td><td>Jan 2024</td><td style="font-weight:600;color:#1B4D3E;">+3</td><td><span class="badge badge-green">Disetujui</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
+                <tr><td class="td-name">Panitia Dies Natalis 2024</td><td><span class="badge badge-gray">Kepanitiaan</span></td><td>Feb 2024</td><td style="color:#9A9489;">5</td><td><span class="badge badge-amber">Pending</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
+                <tr><td class="td-name">Lomba Hackathon FTE 2024</td><td><span class="badge badge-gray">Kompetisi</span></td><td>Mar 2024</td><td style="color:#9A9489;">8</td><td><span class="badge badge-amber">Pending</span></td><td><button class="btn-outline" style="font-size:11px;padding:5px 10px;">Lihat</button></td></tr>
+                <tr><td class="td-name">Workshop Desain UI/UX</td><td><span class="badge badge-gray">Seminar</span></td><td>Apr 2024</td><td style="color:#C0392B;">—</td><td><span class="badge badge-red">Ditolak</span></td><td><button class="btn-primary" style="font-size:11px;padding:5px 10px;">Upload Ulang</button></td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- REKAP SKP -->
-      <div id="view-skp" class="view">
+  <!-- PAGE 5: REKAP SKP -->
+  <div class="page-section">
+    <div class="page-label">05 — MAHASISWA / REKAP SKP</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Mahasiswa</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Sertifikat</div>
+        <a class="nav-item"><span class="nav-icon">↑</span>Upload Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">☰</span>Daftar Sertifikat</a>
+        <a class="nav-item active"><span class="nav-icon">◎</span>Rekap SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi<span class="nav-badge">3</span></a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">MA</div><div><div class="user-name">I Made Arta</div><div class="user-nim">2208561001</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Rekap SKP</div><div class="page-subtitle">Detail poin per kategori</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">+ Upload Sertifikat</button></div></div>
+      <div class="content">
         <div class="grid2" style="margin-bottom:16px;">
           <div class="card" style="display:flex;align-items:center;gap:20px;">
-            <svg class="ring-svg" width="90" height="90" viewBox="0 0 90 90">
-              <circle cx="45" cy="45" r="36" fill="none" stroke="#EEEAE2" stroke-width="9"/>
-              <circle cx="45" cy="45" r="36" fill="none" stroke="#1B4D3E" stroke-width="9"
-                stroke-dasharray="226" stroke-dashoffset="72" stroke-linecap="round"
-                transform="rotate(-90 45 45)"/>
-              <text x="45" y="49" text-anchor="middle" font-family="Fraunces,serif" font-size="18" font-weight="600" fill="#1A1714">82</text>
-            </svg>
+            <svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="36" fill="none" stroke="#EEEAE2" stroke-width="9"/><circle cx="45" cy="45" r="36" fill="none" stroke="#1B4D3E" stroke-width="9" stroke-dasharray="226" stroke-dashoffset="72" stroke-linecap="round" transform="rotate(-90 45 45)"/><text x="45" y="49" text-anchor="middle" font-family="Fraunces,serif" font-size="18" font-weight="600" fill="#1A1714">82</text></svg>
             <div>
-              <div style="font-size:12px;color:var(--text-3);">Total SKP terkumpul</div>
-              <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--text);">82 <span style="font-size:16px;color:var(--text-3);font-family:'DM Sans',sans-serif;">/ 120</span></div>
-              <div style="font-size:13px;color:var(--amber);margin-top:6px;font-weight:500;">Kurang 38 SKP lagi</div>
+              <div style="font-size:12px;color:#9A9489;">Total SKP terkumpul</div>
+              <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:#1A1714;">82 <span style="font-size:16px;color:#9A9489;font-family:'DM Sans',sans-serif;">/ 120</span></div>
+              <div style="font-size:13px;color:#92570A;margin-top:6px;font-weight:500;">Kurang 38 SKP lagi</div>
             </div>
           </div>
           <div class="card">
             <div class="card-title" style="margin-bottom:14px;">Estimasi Kelulusan SKP</div>
-            <div style="font-size:13px;color:var(--text-2);line-height:1.7;">
-              Dengan rata-rata upload <strong>4 SKP/bulan</strong>, kamu diperkirakan memenuhi target SKP pada:<br>
-              <span style="font-family:'Fraunces',serif;font-size:22px;color:var(--accent);font-weight:600;display:block;margin-top:8px;">Oktober 2025</span>
-              <span style="font-size:11px;color:var(--text-3);">Estimasi berdasarkan 6 bulan terakhir</span>
-            </div>
+            <div style="font-size:13px;color:#5C5750;line-height:1.7;">Dengan rata-rata upload <strong>4 SKP/bulan</strong>, kamu diperkirakan memenuhi target SKP pada:<br><span style="font-family:'Fraunces',serif;font-size:22px;color:#1B4D3E;font-weight:600;display:block;margin-top:8px;">Oktober 2025</span><span style="font-size:11px;color:#9A9489;">Estimasi berdasarkan 6 bulan terakhir</span></div>
           </div>
         </div>
         <div class="card">
           <div class="card-header"><span class="card-title">Detail per Kategori</span></div>
-          <div class="table-wrap">
+          <div style="overflow-x:auto;">
             <table>
               <thead><tr><th>Kategori</th><th>Wajib Min.</th><th>Terkumpul</th><th>Status</th><th>Sisa</th></tr></thead>
               <tbody>
-                <tr><td class="td-name">SKP Wajib (PKKMB, PKM, Student Day)</td><td>30</td><td style="font-weight:600;color:var(--accent);">30</td><td><span class="badge badge-green">Lengkap</span></td><td style="color:var(--text-3);">—</td></tr>
-                <tr><td class="td-name">Organisasi & Kepanitiaan</td><td>30</td><td>22</td><td><span class="badge badge-amber">Kurang</span></td><td style="color:var(--amber);font-weight:500;">8 SKP</td></tr>
-                <tr><td class="td-name">Seminar, Pelatihan & Workshop</td><td>30</td><td>18</td><td><span class="badge badge-amber">Kurang</span></td><td style="color:var(--amber);font-weight:500;">12 SKP</td></tr>
-                <tr><td class="td-name">Prestasi & Kompetisi</td><td>20</td><td>12</td><td><span class="badge badge-amber">Kurang</span></td><td style="color:var(--amber);font-weight:500;">8 SKP</td></tr>
+                <tr><td class="td-name">SKP Wajib (PKKMB, PKM, Student Day)</td><td>30</td><td style="font-weight:600;color:#1B4D3E;">30</td><td><span class="badge badge-green">Lengkap</span></td><td style="color:#9A9489;">—</td></tr>
+                <tr><td class="td-name">Organisasi & Kepanitiaan</td><td>30</td><td>22</td><td><span class="badge badge-amber">Kurang</span></td><td style="color:#92570A;font-weight:500;">8 SKP</td></tr>
+                <tr><td class="td-name">Seminar, Pelatihan & Workshop</td><td>30</td><td>18</td><td><span class="badge badge-amber">Kurang</span></td><td style="color:#92570A;font-weight:500;">12 SKP</td></tr>
+                <tr><td class="td-name">Prestasi & Kompetisi</td><td>20</td><td>12</td><td><span class="badge badge-amber">Kurang</span></td><td style="color:#92570A;font-weight:500;">8 SKP</td></tr>
                 <tr><td class="td-name">Pengabdian Masyarakat</td><td>10</td><td style="color:#C0392B;font-weight:600;">0</td><td><span class="badge badge-red">Belum ada</span></td><td style="color:#C0392B;font-weight:500;">10 SKP</td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- NOTIFIKASI -->
-      <div id="view-notifikasi" class="view">
-        <div class="card" style="max-width:600px;">
+  <!-- PAGE 6: NOTIFIKASI -->
+  <div class="page-section">
+    <div class="page-label">06 — MAHASISWA / NOTIFIKASI</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Mahasiswa</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Sertifikat</div>
+        <a class="nav-item"><span class="nav-icon">↑</span>Upload Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">☰</span>Daftar Sertifikat</a>
+        <a class="nav-item"><span class="nav-icon">◎</span>Rekap SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item active"><span class="nav-icon">◉</span>Notifikasi<span class="nav-badge">3</span></a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">MA</div><div><div class="user-name">I Made Arta</div><div class="user-nim">2208561001</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Notifikasi</div><div class="page-subtitle">Semua pemberitahuan</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">+ Upload Sertifikat</button></div></div>
+      <div class="content">
+        <div class="notif-card">
           <div class="card-header"><span class="card-title">Semua Notifikasi</span><span class="card-action">Tandai semua dibaca</span></div>
           <div class="notif-list">
             <div class="ni"><div class="ni-dot" style="background:#1D9E75;"></div><div><div class="ni-text"><strong>Sertifikat Seminar AI & ML disetujui</strong> oleh Admin BEM Fasilkom. 3 SKP berhasil ditambahkan.</div><div class="ni-time">2 jam lalu</div></div></div>
@@ -638,57 +424,48 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- ── ADMIN BEM VIEWS ── -->
-
-      <!-- ADMIN DASHBOARD -->
-      <div id="view-admin-dashboard" class="view">
+  <!-- PAGE 7: ADMIN DASHBOARD -->
+  <div class="page-section">
+    <div class="page-label">07 — ADMIN BEM / DASHBOARD</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Admin BEM</span></div></div>
+      <div class="nav">
+        <a class="nav-item active"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Validasi</div>
+        <a class="nav-item"><span class="nav-icon">⊕</span>Antrian Validasi<span class="nav-badge">24</span></a>
+        <a class="nav-item"><span class="nav-icon">☰</span>Data Mahasiswa</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi</a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">GB</div><div><div class="user-name">I Gede Bayu</div><div class="user-nim">Admin BEM</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Dashboard Admin</div><div class="page-subtitle">Fasilkom — Semester Genap 2024/2025</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">Export Data</button></div></div>
+      <div class="content">
         <div class="metrics">
-          <div class="metric-card gold">
-            <div class="m-label">Antrian Validasi</div>
-            <div class="m-val">24</div>
-            <div class="m-sub warn">perlu ditindak</div>
-            <div class="m-icon">📋</div>
-          </div>
-          <div class="metric-card green">
-            <div class="m-label">Disetujui bulan ini</div>
-            <div class="m-val">187</div>
-            <div class="m-sub up">↑ 12% vs bulan lalu</div>
-            <div class="m-icon">✅</div>
-          </div>
-          <div class="metric-card red">
-            <div class="m-label">Ditolak bulan ini</div>
-            <div class="m-val">31</div>
-            <div class="m-sub down">↑ 5% vs bulan lalu</div>
-            <div class="m-icon">❌</div>
-          </div>
-          <div class="metric-card blue">
-            <div class="m-label">Mahasiswa aktif</div>
-            <div class="m-val">412</div>
-            <div class="m-sub">Fasilkom Angkatan 22</div>
-            <div class="m-icon">👥</div>
-          </div>
+          <div class="metric-card gold"><div class="m-label">Antrian Validasi</div><div class="m-val">24</div><div class="m-sub warn">perlu ditindak</div><div class="m-icon">📋</div></div>
+          <div class="metric-card green"><div class="m-label">Disetujui bulan ini</div><div class="m-val">187</div><div class="m-sub up">↑ 12% vs bulan lalu</div><div class="m-icon">✅</div></div>
+          <div class="metric-card red"><div class="m-label">Ditolak bulan ini</div><div class="m-val">31</div><div class="m-sub down">↑ 5% vs bulan lalu</div><div class="m-icon">❌</div></div>
+          <div class="metric-card blue"><div class="m-label">Mahasiswa aktif</div><div class="m-val">412</div><div class="m-sub">Fasilkom Angkatan 22</div><div class="m-icon">👥</div></div>
         </div>
         <div class="card" style="margin-bottom:16px;">
-          <div class="card-header"><span class="card-title">Antrian Validasi Terbaru</span><span class="card-action" onclick="showView('admin-validasi')">Lihat semua (24) →</span></div>
-          <div id="queueList">
-            <div class="queue-item"><div class="qi-avatar">IO</div><div class="qi-info"><div class="qi-name">I Nyoman Oka</div><div class="qi-cert">Seminar Nasional Teknologi Informasi 2024 — Peserta</div></div><div class="qi-poin">+3 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-            <div class="queue-item"><div class="qi-avatar">KD</div><div class="qi-info"><div class="qi-name">Kadek Dewi Pratiwi</div><div class="qi-cert">Juara 2 Lomba Esai Tingkat Nasional — Kompetisi</div></div><div class="qi-poin">+10 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-            <div class="queue-item"><div class="qi-avatar">WA</div><div class="qi-info"><div class="qi-name">Wayan Agus Saputra</div><div class="qi-cert">Panitia KMTF Cup 2024 — Kepanitiaan</div></div><div class="qi-poin">+5 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-          </div>
+          <div class="card-header"><span class="card-title">Antrian Validasi Terbaru</span><span class="card-action">Lihat semua (24) →</span></div>
+          <div class="queue-item"><div class="qi-avatar">IO</div><div class="qi-info"><div class="qi-name">I Nyoman Oka</div><div class="qi-cert">Seminar Nasional Teknologi Informasi 2024 — Peserta</div></div><div class="qi-poin">+3 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
+          <div class="queue-item"><div class="qi-avatar">KD</div><div class="qi-info"><div class="qi-name">Kadek Dewi Pratiwi</div><div class="qi-cert">Juara 2 Lomba Esai Tingkat Nasional — Kompetisi</div></div><div class="qi-poin">+10 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
+          <div class="queue-item"><div class="qi-avatar">WA</div><div class="qi-info"><div class="qi-name">Wayan Agus Saputra</div><div class="qi-cert">Panitia KMTF Cup 2024 — Kepanitiaan</div></div><div class="qi-poin">+5 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
         </div>
         <div class="grid2">
           <div class="card">
             <div class="card-header"><span class="card-title">Mahasiswa belum lengkap SKP</span></div>
-            <table>
-              <thead><tr><th>Nama</th><th>SKP</th><th>Kurang</th></tr></thead>
-              <tbody>
-                <tr><td class="td-name">I Made Surya</td><td>45</td><td style="color:#C0392B;font-weight:500;">75 SKP</td></tr>
-                <tr><td class="td-name">Ni Putu Ayu</td><td>60</td><td style="color:var(--amber);font-weight:500;">60 SKP</td></tr>
-                <tr><td class="td-name">Komang Arya</td><td>78</td><td style="color:var(--amber);font-weight:500;">42 SKP</td></tr>
-                <tr><td class="td-name">Made Wirastini</td><td>95</td><td style="color:var(--accent-mid);font-weight:500;">25 SKP</td></tr>
-              </tbody>
-            </table>
+            <table><thead><tr><th>Nama</th><th>SKP</th><th>Kurang</th></tr></thead><tbody>
+              <tr><td class="td-name">I Made Surya</td><td>45</td><td style="color:#C0392B;font-weight:500;">75 SKP</td></tr>
+              <tr><td class="td-name">Ni Putu Ayu</td><td>60</td><td style="color:#92570A;font-weight:500;">60 SKP</td></tr>
+              <tr><td class="td-name">Komang Arya</td><td>78</td><td style="color:#92570A;font-weight:500;">42 SKP</td></tr>
+              <tr><td class="td-name">Made Wirastini</td><td>95</td><td style="color:#4A8C72;font-weight:500;">25 SKP</td></tr>
+            </tbody></table>
           </div>
           <div class="card">
             <div class="card-header"><span class="card-title">Distribusi SKP per Kategori</span></div>
@@ -700,33 +477,67 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- ADMIN VALIDASI -->
-      <div id="view-admin-validasi" class="view">
-        <div style="display:flex;gap:10px;margin-bottom:20px;">
-          <input class="form-input" style="max-width:280px;" placeholder="Cari nama / NIM mahasiswa...">
-          <select class="form-input" style="max-width:180px;"><option>Semua kategori</option><option>Seminar</option><option>Kepanitiaan</option><option>Kompetisi</option><option>Pengabdian</option></select>
-          <select class="form-input" style="max-width:160px;"><option>Semua angkatan</option><option>2022</option><option>2021</option><option>2020</option></select>
-        </div>
-        <div id="allQueueList">
-          <div class="queue-item"><div class="qi-avatar">IO</div><div class="qi-info"><div class="qi-name">I Nyoman Oka — 2208561010</div><div class="qi-cert">Seminar Nasional Teknologi Informasi — Peserta — 15 Jan 2024</div></div><div class="qi-poin">+3 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-          <div class="queue-item"><div class="qi-avatar">KD</div><div class="qi-info"><div class="qi-name">Kadek Dewi Pratiwi — 2208561022</div><div class="qi-cert">Juara 2 Lomba Esai Nasional — Kompetisi — 20 Jan 2024</div></div><div class="qi-poin">+10 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-          <div class="queue-item"><div class="qi-avatar">WA</div><div class="qi-info"><div class="qi-name">Wayan Agus Saputra — 2208561035</div><div class="qi-cert">Panitia KMTF Cup 2024 — Kepanitiaan — 22 Jan 2024</div></div><div class="qi-poin">+5 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-          <div class="queue-item"><div class="qi-avatar">NS</div><div class="qi-info"><div class="qi-name">Ni Made Suriani — 2208561041</div><div class="qi-cert">Workshop UI/UX Lanjutan — Seminar — 25 Jan 2024</div></div><div class="qi-poin">+2 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-          <div class="queue-item"><div class="qi-avatar">KP</div><div class="qi-info"><div class="qi-name">Komang Prasetya — 2208561058</div><div class="qi-cert">PKM-K Lolos Pendanaan — Wajib — 28 Jan 2024</div></div><div class="qi-poin">+12 SKP</div><div class="qi-actions"><button class="btn-approve" onclick="approveItem(this)">Setujui</button><button class="btn-reject" onclick="rejectItem(this)">Tolak</button></div></div>
-        </div>
+  <!-- PAGE 8: ADMIN VALIDASI -->
+  <div class="page-section">
+    <div class="page-label">08 — ADMIN BEM / ANTRIAN VALIDASI</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Admin BEM</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Validasi</div>
+        <a class="nav-item active"><span class="nav-icon">⊕</span>Antrian Validasi<span class="nav-badge">24</span></a>
+        <a class="nav-item"><span class="nav-icon">☰</span>Data Mahasiswa</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi</a>
       </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">GB</div><div><div class="user-name">I Gede Bayu</div><div class="user-nim">Admin BEM</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Antrian Validasi</div><div class="page-subtitle">24 sertifikat menunggu validasi</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">Export Data</button></div></div>
+      <div class="content">
+        <div style="display:flex;gap:10px;margin-bottom:20px;">
+          <input class="form-input" style="max-width:280px;" placeholder="Cari nama / NIM mahasiswa..." readonly>
+          <select class="form-input" style="max-width:180px;"><option>Semua kategori</option></select>
+          <select class="form-input" style="max-width:160px;"><option>Semua angkatan</option></select>
+        </div>
+        <div class="queue-item"><div class="qi-avatar">IO</div><div class="qi-info"><div class="qi-name">I Nyoman Oka — 2208561010</div><div class="qi-cert">Seminar Nasional Teknologi Informasi — Peserta — 15 Jan 2024</div></div><div class="qi-poin">+3 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
+        <div class="queue-item"><div class="qi-avatar">KD</div><div class="qi-info"><div class="qi-name">Kadek Dewi Pratiwi — 2208561022</div><div class="qi-cert">Juara 2 Lomba Esai Nasional — Kompetisi — 20 Jan 2024</div></div><div class="qi-poin">+10 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
+        <div class="queue-item"><div class="qi-avatar">WA</div><div class="qi-info"><div class="qi-name">Wayan Agus Saputra — 2208561035</div><div class="qi-cert">Panitia KMTF Cup 2024 — Kepanitiaan — 22 Jan 2024</div></div><div class="qi-poin">+5 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
+        <div class="queue-item"><div class="qi-avatar">NS</div><div class="qi-info"><div class="qi-name">Ni Made Suriani — 2208561041</div><div class="qi-cert">Workshop UI/UX Lanjutan — Seminar — 25 Jan 2024</div></div><div class="qi-poin">+2 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
+        <div class="queue-item"><div class="qi-avatar">KP</div><div class="qi-info"><div class="qi-name">Komang Prasetya — 2208561058</div><div class="qi-cert">PKM-K Lolos Pendanaan — Wajib — 28 Jan 2024</div></div><div class="qi-poin">+12 SKP</div><div class="qi-actions"><button class="btn-approve">Setujui</button><button class="btn-reject">Tolak</button></div></div>
+      </div>
+    </div>
+  </div>
 
-      <!-- ADMIN MAHASISWA -->
-      <div id="view-admin-mahasiswa" class="view">
+  <!-- PAGE 9: ADMIN DATA MAHASISWA -->
+  <div class="page-section">
+    <div class="page-label">09 — ADMIN BEM / DATA MAHASISWA</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Admin BEM</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Validasi</div>
+        <a class="nav-item"><span class="nav-icon">⊕</span>Antrian Validasi<span class="nav-badge">24</span></a>
+        <a class="nav-item active"><span class="nav-icon">☰</span>Data Mahasiswa</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi</a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">GB</div><div><div class="user-name">I Gede Bayu</div><div class="user-nim">Admin BEM</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Data Mahasiswa</div><div class="page-subtitle">Rekap SKP seluruh mahasiswa</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">Export Data</button></div></div>
+      <div class="content">
         <div style="display:flex;gap:10px;margin-bottom:16px;">
-          <input class="form-input" style="max-width:280px;" placeholder="Cari nama / NIM...">
-          <select class="form-input" style="max-width:180px;"><option>Semua angkatan</option><option>2022</option><option>2021</option><option>2020</option></select>
-          <select class="form-input" style="max-width:180px;"><option>Semua status</option><option>Sudah lengkap</option><option>Hampir lengkap</option><option>Perlu perhatian</option></select>
+          <input class="form-input" style="max-width:280px;" placeholder="Cari nama / NIM..." readonly>
+          <select class="form-input" style="max-width:180px;"><option>Semua angkatan</option></select>
+          <select class="form-input" style="max-width:180px;"><option>Semua status</option></select>
           <button class="btn-primary" style="margin-left:auto;">Export Excel</button>
         </div>
         <div class="card" style="padding:0;">
-          <div class="table-wrap">
+          <div style="overflow-x:auto;">
             <table>
               <thead><tr><th>Nama</th><th>NIM</th><th>Angkatan</th><th>SKP</th><th>Wajib</th><th>Status</th><th></th></tr></thead>
               <tbody>
@@ -740,27 +551,31 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- ── SUPERADMIN VIEWS ── -->
-
-      <!-- SA DASHBOARD -->
-      <div id="view-sa-dashboard" class="view">
+  <!-- PAGE 10: SUPERADMIN DASHBOARD -->
+  <div class="page-section">
+    <div class="page-label">10 — SUPERADMIN / DASHBOARD</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Superadmin</span></div></div>
+      <div class="nav">
+        <a class="nav-item active"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Pengaturan</div>
+        <a class="nav-item"><span class="nav-icon">☰</span>Manajemen Admin</a>
+        <a class="nav-item"><span class="nav-icon">⊞</span>Konfigurasi SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi</a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">NA</div><div><div class="user-name">Dr. Ngurah Alit</div><div class="user-nim">Superadmin</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Dashboard Superadmin</div><div class="page-subtitle">Universitas Udayana — Overview</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">+ Buka Periode</button></div></div>
+      <div class="content">
         <div class="sa-metrics">
-          <div class="sa-big" style="grid-column:span 1;">
-            <div class="sb-val">4,821</div>
-            <div class="sb-label">Total Mahasiswa Aktif</div>
-            <div class="sb-sub">Semua fakultas & prodi</div>
-          </div>
-          <div class="metric-card green" style="grid-column:span 1;">
-            <div class="m-label">Validasi bulan ini</div>
-            <div class="m-val">1,240</div>
-            <div class="m-sub up">↑ 18% vs bulan lalu</div>
-          </div>
-          <div class="metric-card gold" style="grid-column:span 1;">
-            <div class="m-label">Admin BEM aktif</div>
-            <div class="m-val">14</div>
-            <div class="m-sub">dari 14 fakultas</div>
-          </div>
+          <div class="sa-big"><div class="sb-val">4,821</div><div class="sb-label">Total Mahasiswa Aktif</div><div class="sb-sub">Semua fakultas & prodi</div></div>
+          <div class="metric-card green"><div class="m-label">Validasi bulan ini</div><div class="m-val">1,240</div><div class="m-sub up">↑ 18% vs bulan lalu</div></div>
+          <div class="metric-card gold"><div class="m-label">Admin BEM aktif</div><div class="m-val">14</div><div class="m-sub">dari 14 fakultas</div></div>
         </div>
         <div class="grid2">
           <div class="card">
@@ -773,46 +588,100 @@
           </div>
           <div class="card">
             <div class="card-header"><span class="card-title">Manajemen Periode Validasi</span></div>
-            <table>
-              <thead><tr><th>Periode</th><th>Status</th><th>Deadline</th></tr></thead>
-              <tbody>
-                <tr><td class="td-name">Ganjil 2024/2025</td><td><span class="badge badge-green">Selesai</span></td><td style="color:var(--text-3);">31 Des 2024</td></tr>
-                <tr><td class="td-name">Genap 2024/2025</td><td><span class="badge badge-blue">Aktif</span></td><td style="font-weight:500;">31 Mei 2025</td></tr>
-                <tr><td class="td-name">Ganjil 2025/2026</td><td><span class="badge badge-gray">Belum buka</span></td><td style="color:var(--text-3);">Agt 2025</td></tr>
-              </tbody>
-            </table>
+            <table><thead><tr><th>Periode</th><th>Status</th><th>Deadline</th></tr></thead><tbody>
+              <tr><td class="td-name">Ganjil 2024/2025</td><td><span class="badge badge-green">Selesai</span></td><td style="color:#9A9489;">31 Des 2024</td></tr>
+              <tr><td class="td-name">Genap 2024/2025</td><td><span class="badge badge-blue">Aktif</span></td><td style="font-weight:500;">31 Mei 2025</td></tr>
+              <tr><td class="td-name">Ganjil 2025/2026</td><td><span class="badge badge-gray">Belum buka</span></td><td style="color:#9A9489;">Agt 2025</td></tr>
+            </tbody></table>
             <button class="btn-primary" style="margin-top:14px;width:100%;">+ Buka Periode Baru</button>
           </div>
         </div>
         <div class="card">
-          <div class="card-header"><span class="card-title">Manajemen Admin BEM per Fakultas</span><span class="card-action" onclick="showView('sa-admin')">Kelola semua →</span></div>
-          <div class="table-wrap">
+          <div class="card-header"><span class="card-title">Manajemen Admin BEM per Fakultas</span><span class="card-action">Kelola semua →</span></div>
+          <div style="overflow-x:auto;">
             <table>
               <thead><tr><th>Fakultas</th><th>Admin BEM</th><th>Antrian</th><th>Disetujui (bulan ini)</th><th>Status</th></tr></thead>
               <tbody>
-                <tr><td class="td-name">Fasilkom</td><td>I Gede Bayu Pratama</td><td style="font-weight:600;color:var(--amber);">24</td><td style="color:var(--accent);font-weight:500;">187</td><td><span class="badge badge-green">Aktif</span></td></tr>
+                <tr><td class="td-name">Fasilkom</td><td>I Gede Bayu Pratama</td><td style="font-weight:600;color:#92570A;">24</td><td style="color:#1B4D3E;font-weight:500;">187</td><td><span class="badge badge-green">Aktif</span></td></tr>
                 <tr><td class="td-name">FEB</td><td>Ni Wayan Sari</td><td>8</td><td>142</td><td><span class="badge badge-green">Aktif</span></td></tr>
-                <tr><td class="td-name">FKH</td><td>Made Aditya</td><td style="font-weight:600;color:var(--red);">51</td><td>98</td><td><span class="badge badge-red">Overload</span></td></tr>
+                <tr><td class="td-name">FKH</td><td>Made Aditya</td><td style="font-weight:600;color:#C0392B;">51</td><td>98</td><td><span class="badge badge-red">Overload</span></td></tr>
                 <tr><td class="td-name">FH</td><td>Komang Widya</td><td>3</td><td>111</td><td><span class="badge badge-green">Aktif</span></td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- SA SETTINGS -->
-      <div id="view-sa-settings" class="view">
-        <div style="max-width:600px;">
+  <!-- PAGE 11: SUPERADMIN MANAJEMEN ADMIN -->
+  <div class="page-section">
+    <div class="page-label">11 — SUPERADMIN / MANAJEMEN ADMIN BEM</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Superadmin</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Pengaturan</div>
+        <a class="nav-item active"><span class="nav-icon">☰</span>Manajemen Admin</a>
+        <a class="nav-item"><span class="nav-icon">⊞</span>Konfigurasi SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi</a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">NA</div><div><div class="user-name">Dr. Ngurah Alit</div><div class="user-nim">Superadmin</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Manajemen Admin BEM</div><div class="page-subtitle">Kelola admin per fakultas</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">+ Buka Periode</button></div></div>
+      <div class="content">
+        <div style="display:flex;justify-content:space-between;margin-bottom:16px;">
+          <input class="form-input" style="max-width:280px;" placeholder="Cari admin BEM..." readonly>
+          <button class="btn-primary">+ Tambah Admin BEM</button>
+        </div>
+        <div class="card" style="padding:0;">
+          <div style="overflow-x:auto;">
+            <table>
+              <thead><tr><th>Nama</th><th>Fakultas</th><th>Email</th><th>Validasi Total</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="td-name">I Gede Bayu Pratama</td><td>Fasilkom</td><td style="font-size:12px;color:#9A9489;">bayu@student.unud.ac.id</td><td>1,204</td><td><span class="badge badge-green">Aktif</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+                <tr><td class="td-name">Ni Wayan Sari Dewi</td><td>FEB</td><td style="font-size:12px;color:#9A9489;">sari@student.unud.ac.id</td><td>988</td><td><span class="badge badge-green">Aktif</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+                <tr><td class="td-name">Made Aditya Kusuma</td><td>FKH</td><td style="font-size:12px;color:#9A9489;">aditya@student.unud.ac.id</td><td>752</td><td><span class="badge badge-red">Overload</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+                <tr><td class="td-name">Komang Widya Antari</td><td>FH</td><td style="font-size:12px;color:#9A9489;">widya@student.unud.ac.id</td><td>640</td><td><span class="badge badge-green">Aktif</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 12: SUPERADMIN KONFIGURASI SKP -->
+  <div class="page-section" style="border-bottom:none;">
+    <div class="page-label">12 — SUPERADMIN / KONFIGURASI SKP</div>
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="logo-text">Sisakti+</div><div class="logo-sub">Universitas Udayana</div><div class="role-pill"><div class="role-dot"></div><span>Superadmin</span></div></div>
+      <div class="nav">
+        <a class="nav-item"><span class="nav-icon">◼</span>Dashboard</a>
+        <div class="nav-section">Pengaturan</div>
+        <a class="nav-item"><span class="nav-icon">☰</span>Manajemen Admin</a>
+        <a class="nav-item active"><span class="nav-icon">⊞</span>Konfigurasi SKP</a>
+        <div class="nav-section">Lainnya</div>
+        <a class="nav-item"><span class="nav-icon">◉</span>Notifikasi</a>
+      </div>
+      <div class="sidebar-footer"><div class="user-info"><div class="user-avatar">NA</div><div><div class="user-name">Dr. Ngurah Alit</div><div class="user-nim">Superadmin</div></div></div><div class="btn-logout">Keluar</div></div>
+    </div>
+    <div class="main">
+      <div class="topbar"><div><div class="page-title">Konfigurasi SKP</div><div class="page-subtitle">Atur poin dan kategori SKP</div></div><div class="topbar-right"><div class="notif-btn">🔔<div class="notif-dot"></div></div><button class="btn-primary">+ Buka Periode</button></div></div>
+      <div class="content">
+        <div class="settings-wrap">
           <div class="card" style="margin-bottom:16px;">
             <div class="card-title" style="margin-bottom:16px;">Pengaturan Poin SKP</div>
-            <div class="form-group"><label class="form-label">SKP minimal kelulusan</label><input class="form-input" value="120" type="number"></div>
+            <div class="form-group"><label class="form-label">SKP minimal kelulusan</label><input class="form-input" value="120" readonly></div>
             <div class="grid2" style="margin-bottom:0;">
-              <div class="form-group"><label class="form-label">SKP wajib minimal</label><input class="form-input" value="30" type="number"></div>
-              <div class="form-group"><label class="form-label">SKP organisasi minimal</label><input class="form-input" value="30" type="number"></div>
+              <div class="form-group"><label class="form-label">SKP wajib minimal</label><input class="form-input" value="30" readonly></div>
+              <div class="form-group"><label class="form-label">SKP organisasi minimal</label><input class="form-input" value="30" readonly></div>
             </div>
             <div class="grid2" style="margin-bottom:0;">
-              <div class="form-group"><label class="form-label">SKP seminar minimal</label><input class="form-input" value="30" type="number"></div>
-              <div class="form-group"><label class="form-label">SKP pengabdian minimal</label><input class="form-input" value="10" type="number"></div>
+              <div class="form-group"><label class="form-label">SKP seminar minimal</label><input class="form-input" value="30" readonly></div>
+              <div class="form-group"><label class="form-label">SKP pengabdian minimal</label><input class="form-input" value="10" readonly></div>
             </div>
             <button class="btn-primary">Simpan Perubahan</button>
           </div>
@@ -821,205 +690,17 @@
             <table>
               <thead><tr><th>Kegiatan</th><th>Peran</th><th>Poin SKP</th><th></th></tr></thead>
               <tbody>
-                <tr><td class="td-name">PKKMB</td><td>Peserta</td><td><input class="form-input" value="10" style="width:70px;padding:5px 8px;font-size:12px;"></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
-                <tr><td class="td-name">Student Day</td><td>Peserta</td><td><input class="form-input" value="8" style="width:70px;padding:5px 8px;font-size:12px;"></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
-                <tr><td class="td-name">Ketua PKM</td><td>Ketua</td><td><input class="form-input" value="15" style="width:70px;padding:5px 8px;font-size:12px;"></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
-                <tr><td class="td-name">Seminar</td><td>Peserta</td><td><input class="form-input" value="2" style="width:70px;padding:5px 8px;font-size:12px;"></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+                <tr><td class="td-name">PKKMB</td><td>Peserta</td><td><input class="form-input" value="10" style="width:70px;padding:5px 8px;font-size:12px;" readonly></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+                <tr><td class="td-name">Student Day</td><td>Peserta</td><td><input class="form-input" value="8" style="width:70px;padding:5px 8px;font-size:12px;" readonly></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+                <tr><td class="td-name">Ketua PKM</td><td>Ketua</td><td><input class="form-input" value="15" style="width:70px;padding:5px 8px;font-size:12px;" readonly></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
+                <tr><td class="td-name">Seminar</td><td>Peserta</td><td><input class="form-input" value="2" style="width:70px;padding:5px 8px;font-size:12px;" readonly></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
               </tbody>
             </table>
             <button class="btn-primary" style="margin-top:14px;">+ Tambah Kategori Baru</button>
           </div>
         </div>
       </div>
-
-      <!-- SA ADMIN LIST -->
-      <div id="view-sa-admin" class="view">
-        <div style="display:flex;justify-content:space-between;margin-bottom:16px;">
-          <input class="form-input" style="max-width:280px;" placeholder="Cari admin BEM...">
-          <button class="btn-primary">+ Tambah Admin BEM</button>
-        </div>
-        <div class="card" style="padding:0;">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Nama</th><th>Fakultas</th><th>Email</th><th>Validasi Total</th><th>Status</th><th></th></tr></thead>
-              <tbody>
-                <tr><td class="td-name">I Gede Bayu Pratama</td><td>Fasilkom</td><td style="font-size:12px;color:var(--text-3);">bayu@student.unud.ac.id</td><td>1,204</td><td><span class="badge badge-green">Aktif</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
-                <tr><td class="td-name">Ni Wayan Sari Dewi</td><td>FEB</td><td style="font-size:12px;color:var(--text-3);">sari@student.unud.ac.id</td><td>988</td><td><span class="badge badge-green">Aktif</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
-                <tr><td class="td-name">Made Aditya Kusuma</td><td>FKH</td><td style="font-size:12px;color:var(--text-3);">aditya@student.unud.ac.id</td><td>752</td><td><span class="badge badge-red">Overload</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
-                <tr><td class="td-name">Komang Widya Antari</td><td>FH</td><td style="font-size:12px;color:var(--text-3);">widya@student.unud.ac.id</td><td>640</td><td><span class="badge badge-green">Aktif</span></td><td><button class="btn-outline" style="font-size:11px;padding:4px 10px;">Edit</button></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /content -->
-  </div><!-- /main -->
-</div><!-- /app -->
-
-<!-- ROLE SWITCHER (demo helper) -->
-<div class="role-switcher">
-  <div class="rs-title">Demo Role</div>
-  <div class="rs-btns">
-    <button class="rs-btn active" onclick="switchRole('mahasiswa',this)">Mahasiswa</button>
-    <button class="rs-btn" onclick="switchRole('admin',this)">Admin BEM</button>
-    <button class="rs-btn" onclick="switchRole('superadmin',this)">Superadmin</button>
+    </div>
   </div>
+
 </div>
-
-<script>
-let currentRole = 'mahasiswa';
-let loginRole = 'mahasiswa';
-
-const navConfigs = {
-  mahasiswa: [
-    { label:'Dashboard', icon:'◼', view:'dashboard', section:null },
-    { label:'Upload Sertifikat', icon:'↑', view:'upload', section:'Sertifikat' },
-    { label:'Daftar Sertifikat', icon:'☰', view:'sertifikat', section:null },
-    { label:'Rekap SKP', icon:'◎', view:'skp', section:null },
-    { label:'Notifikasi', icon:'◉', view:'notifikasi', section:'Lainnya', badge:'3' },
-  ],
-  admin: [
-    { label:'Dashboard', icon:'◼', view:'admin-dashboard', section:null },
-    { label:'Antrian Validasi', icon:'⊕', view:'admin-validasi', section:'Validasi', badge:'24' },
-    { label:'Data Mahasiswa', icon:'☰', view:'admin-mahasiswa', section:null },
-    { label:'Notifikasi', icon:'◉', view:'notifikasi', section:'Lainnya' },
-  ],
-  superadmin: [
-    { label:'Dashboard', icon:'◼', view:'sa-dashboard', section:null },
-    { label:'Manajemen Admin', icon:'☰', view:'sa-admin', section:'Pengaturan' },
-    { label:'Konfigurasi SKP', icon:'⊞', view:'sa-settings', section:null },
-    { label:'Notifikasi', icon:'◉', view:'notifikasi', section:'Lainnya' },
-  ],
-};
-
-const userConfigs = {
-  mahasiswa: { name:'I Made Arta', nim:'2208561001', avatar:'MA', role:'Mahasiswa' },
-  admin: { name:'I Gede Bayu', nim:'Admin BEM', avatar:'GB', role:'Admin BEM' },
-  superadmin: { name:'Dr. Ngurah Alit', nim:'Superadmin', avatar:'NA', role:'Superadmin' },
-};
-
-function renderNav(role) {
-  const nav = document.getElementById('navItems');
-  const items = navConfigs[role];
-  let html = '';
-  let lastSection = null;
-  items.forEach(item => {
-    if (item.section && item.section !== lastSection) {
-      html += `<div class="nav-section">${item.section}</div>`;
-      lastSection = item.section;
-    }
-    html += `<a class="nav-item" onclick="showView('${item.view}')" data-view="${item.view}">
-      <span class="nav-icon">${item.icon}</span>${item.label}
-      ${item.badge ? `<span class="nav-badge">${item.badge}</span>` : ''}
-    </a>`;
-  });
-  nav.innerHTML = html;
-}
-
-function showView(viewId) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const el = document.getElementById('view-' + viewId);
-  if (el) { el.classList.add('active'); }
-
-  document.querySelectorAll('.nav-item').forEach(n => {
-    n.classList.toggle('active', n.dataset.view === viewId);
-  });
-
-  const titles = {
-    'dashboard': ['Dashboard', 'Semester Genap 2024/2025'],
-    'upload': ['Upload Sertifikat', 'Tambah sertifikat baru'],
-    'sertifikat': ['Daftar Sertifikat', 'Semua sertifikat yang diajukan'],
-    'skp': ['Rekap SKP', 'Detail poin per kategori'],
-    'notifikasi': ['Notifikasi', 'Semua pemberitahuan'],
-    'admin-dashboard': ['Dashboard Admin', 'Fasilkom — Semester Genap 2024/2025'],
-    'admin-validasi': ['Antrian Validasi', '24 sertifikat menunggu validasi'],
-    'admin-mahasiswa': ['Data Mahasiswa', 'Rekap SKP seluruh mahasiswa'],
-    'sa-dashboard': ['Dashboard Superadmin', 'Universitas Udayana — Overview'],
-    'sa-admin': ['Manajemen Admin BEM', 'Kelola admin per fakultas'],
-    'sa-settings': ['Konfigurasi SKP', 'Atur poin dan kategori SKP'],
-  };
-  const t = titles[viewId] || ['Sisakti+', ''];
-  document.getElementById('pageTitle').textContent = t[0];
-  document.getElementById('pageSubtitle').textContent = t[1];
-
-  const isAdmin = currentRole === 'admin';
-  const isSA = currentRole === 'superadmin';
-  const topBtn = document.getElementById('topbarAction');
-  if (isAdmin || isSA) {
-    topBtn.textContent = isAdmin ? 'Export Data' : '+ Buka Periode';
-    topBtn.onclick = null;
-  } else {
-    topBtn.textContent = '+ Upload Sertifikat';
-    topBtn.onclick = () => showView('upload');
-  }
-}
-
-function switchRole(role, btn) {
-  currentRole = role;
-  document.querySelectorAll('.rs-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const u = userConfigs[role];
-  document.getElementById('userAvatar').textContent = u.avatar;
-  document.getElementById('userName').textContent = u.name;
-  document.getElementById('userNim').textContent = u.nim;
-  document.getElementById('roleLabel').textContent = u.role;
-
-  renderNav(role);
-
-  const defaultViews = { mahasiswa:'dashboard', admin:'admin-dashboard', superadmin:'sa-dashboard' };
-  showView(defaultViews[role]);
-}
-
-function setLoginRole(role, btn) {
-  loginRole = role;
-  document.querySelectorAll('.login-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const labels = { mahasiswa:'NIM', admin:'NIP / Username', superadmin:'Username' };
-  document.getElementById('loginLabel').textContent = labels[role];
-}
-
-function doLogin() {
-  document.getElementById('loginPage').style.display = 'none';
-  document.getElementById('mainApp').style.display = 'flex';
-  switchRole(loginRole, document.querySelector('.rs-btn'));
-  // sync role switcher button
-  document.querySelectorAll('.rs-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.toLowerCase().includes(loginRole === 'superadmin' ? 'super' : loginRole));
-  });
-}
-
-function doLogout() {
-  document.getElementById('mainApp').style.display = 'none';
-  document.getElementById('loginPage').style.display = 'flex';
-}
-
-function approveItem(btn) {
-  const item = btn.closest('.queue-item');
-  item.style.opacity = '0.4';
-  item.style.pointerEvents = 'none';
-  btn.textContent = '✓ Disetujui';
-  btn.style.background = '#1D9E75';
-  btn.style.color = '#fff';
-}
-
-function rejectItem(btn) {
-  const item = btn.closest('.queue-item');
-  item.style.opacity = '0.4';
-  item.style.pointerEvents = 'none';
-  btn.textContent = '✗ Ditolak';
-  btn.style.background = '#C0392B';
-  btn.style.color = '#fff';
-}
-
-function filterSert(btn, type) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-// init
-renderNav('mahasiswa');
-</script>
-</body>
-</html>
