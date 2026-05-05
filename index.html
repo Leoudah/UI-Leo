@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sisakti+ Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F3EE;
+  --surface: #FFFFFF;
+  --surface2: #EEEAE2;
+  --border: #D8D3C8;
+  --border-light: #E8E4DC;
+  --text: #1A1714;
+  --text-2: #5C5750;
+  --text-3: #9A9489;
+  --accent: #1B4D3E;
+  --accent-light: #E8F0EC;
+  --accent-mid: #4A8C72;
+  --gold: #B8860B;
+  --gold-light: #FDF6E3;
+  --red: #8B2020;
+  --red-light: #FCEAEA;
+  --amber: #92570A;
+  --amber-light: #FDF3E3;
+  --blue: #1A3A5C;
+  --blue-light: #E8EFF7;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:#F5F3EE; color:#1A1714; }
+
+/* ─── LAYOUT ─── */
+.ds-wrap { width:1280px; margin:0 auto; }
+
+/* ─── SECTION HEADER ─── */
+.section-block {
+  padding: 56px 60px 48px;
+  border-bottom: 1px solid var(--border-light);
+}
+.section-block:last-child { border-bottom: none; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent-mid);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: 'Fraunces', serif; font-size: 36px; font-weight: 600;
+  color: var(--text); letter-spacing: -0.5px; margin-bottom: 10px; line-height: 1.1;
+}
+.section-desc {
+  font-size: 15px; color: var(--text-2); max-width: 600px; line-height: 1.7;
+  margin-bottom: 48px;
+}
+.subsection-title {
+  font-size: 13px; font-weight: 600; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 16px; margin-top: 40px;
+}
+.subsection-title:first-of-type { margin-top: 0; }
+
+/* ─── COVER ─── */
+.cover {
+  background: var(--accent); min-height: 340px; padding: 60px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: 'Sisakti+';
+  font-family: 'Fraunces', serif; font-size: 220px; font-weight: 600;
+  color: rgba(255,255,255,0.04); position: absolute;
+  top: -20px; right: -20px; line-height: 1; pointer-events: none;
+  letter-spacing: -8px;
+}
+.cover-left .cover-logo {
+  font-family: 'Fraunces', serif; font-size: 40px; font-weight: 600;
+  color: #fff; letter-spacing: -1px;
+}
+.cover-left .cover-sub {
+  font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 6px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.cover-right { text-align: right; }
+.cover-right .cover-label {
+  font-size: 12px; color: rgba(255,255,255,0.45); text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 4px;
+}
+.cover-right .cover-version {
+  font-size: 28px; color: rgba(255,255,255,0.8); font-weight: 300;
+  font-family: 'Fraunces', serif;
+}
+.cover-pills {
+  display: flex; gap: 8px; margin-top: 32px;
+}
+.cover-pill {
+  background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7);
+  font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 100px;
+  letter-spacing: 0.3px;
+}
+
+/* ─── TOC ─── */
+.toc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--border-light); border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg); overflow: hidden; margin-top: 32px;
+}
+.toc-item {
+  background: var(--surface); padding: 24px 28px;
+  display: flex; align-items: center; gap: 16px;
+}
+.toc-num {
+  font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300;
+  color: var(--border); min-width: 36px;
+}
+.toc-label { font-size: 14px; font-weight: 500; color: var(--text); }
+.toc-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+/* ─── COLOR SWATCHES ─── */
+.color-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.color-swatch { border-radius: var(--radius); overflow: hidden; }
+.swatch-color { height: 80px; }
+.swatch-info { padding: 10px 12px; background: var(--surface); border: 1px solid var(--border-light); border-top: none; border-radius: 0 0 var(--radius) var(--radius); }
+.swatch-name { font-size: 12px; font-weight: 600; color: var(--text); }
+.swatch-hex { font-size: 11px; color: var(--text-3); font-family: 'DM Mono', monospace; margin-top: 2px; }
+.swatch-role { font-size: 10px; color: var(--text-3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ─── TYPOGRAPHY ─── */
+.type-row {
+  padding: 20px 0; border-bottom: 1px solid var(--border-light);
+  display: grid; grid-template-columns: 200px 1fr 120px 80px;
+  align-items: center; gap: 20px;
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { font-size: 12px; color: var(--text-3); }
+.type-meta strong { display: block; color: var(--text-2); font-weight: 500; font-size: 11px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.type-size { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text-3); }
+.type-weight { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text-3); }
+
+/* ─── SPACING ─── */
+.spacing-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.spacing-box { background: var(--accent-light); border: 1px solid var(--accent-mid); border-radius: 4px; height: 24px; flex-shrink: 0; }
+.spacing-label { font-size: 12px; color: var(--text-2); }
+.spacing-token { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text-3); margin-left: auto; }
+
+/* ─── RADIUS ─── */
+.radius-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.radius-box { width: 60px; height: 40px; background: var(--surface2); border: 1px solid var(--border); }
+.radius-label { font-size: 12px; color: var(--text-2); }
+.radius-token { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text-3); margin-left: auto; }
+
+/* ─── BUTTONS ─── */
+.component-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 24px; background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); margin-bottom: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 9px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: default; border: none; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-secondary { background: var(--accent-light); color: var(--accent); }
+.btn-outline { background: transparent; color: var(--text-2); border: 1px solid var(--border); }
+.btn-danger { background: var(--red-light); color: var(--red); }
+.btn-ghost { background: transparent; color: var(--text-2); }
+.btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 7px; }
+.btn-lg { padding: 13px 24px; font-size: 15px; border-radius: 11px; }
+.btn-disabled { opacity: 0.4; }
+.btn-icon { padding: 9px; border-radius: 9px; background: var(--surface2); color: var(--text-2); }
+.btn-icon-primary { padding: 9px; border-radius: 9px; background: var(--accent); color: #fff; }
+
+/* ─── BADGES ─── */
+.badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.badge-green { background: var(--accent-light); color: var(--accent); }
+.badge-amber { background: var(--amber-light); color: var(--amber); }
+.badge-red { background: var(--red-light); color: var(--red); }
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+.badge-gray { background: var(--surface2); color: var(--text-3); }
+.badge-lg { font-size: 13px; padding: 5px 14px; }
+
+/* ─── FORM ─── */
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 11px; font-weight: 600; color: var(--text-2); margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+.form-input { width: 100%; padding: 10px 13px; border: 1px solid var(--border); border-radius: 9px; font-size: 13px; font-family: inherit; color: var(--text); background: var(--surface); outline: none; }
+.form-input:focus { border-color: var(--accent-mid); box-shadow: 0 0 0 3px rgba(74,140,114,0.12); }
+.form-input.error { border-color: #C0392B; }
+.form-input.success { border-color: var(--accent-mid); }
+.form-help { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+.form-error { font-size: 11px; color: var(--red); margin-top: 4px; }
+.form-success { font-size: 11px; color: var(--accent-mid); margin-top: 4px; }
+.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ─── CARD ─── */
+.card { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 20px; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.card-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.card-action { font-size: 12px; color: var(--accent-mid); font-weight: 500; }
+
+/* ─── METRIC CARD ─── */
+.metric-card { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 18px 20px; position: relative; overflow: hidden; }
+.metric-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.mc-green::before { background: var(--accent-mid); }
+.mc-gold::before { background: var(--gold); }
+.mc-red::before { background: #C0392B; }
+.mc-blue::before { background: #2563EB; }
+.m-label { font-size: 11px; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.m-val { font-size: 28px; font-weight: 600; color: var(--text); font-family: 'Fraunces', serif; line-height: 1; }
+.m-sub { font-size: 12px; color: var(--text-3); margin-top: 6px; }
+.m-sub.up { color: var(--accent-mid); }
+.m-sub.down { color: #C0392B; }
+.m-sub.warn { color: var(--amber); }
+.m-icon { position: absolute; bottom: 14px; right: 16px; font-size: 28px; opacity: 0.12; }
+
+/* ─── SIDEBAR PREVIEW ─── */
+.sidebar-preview { width: 240px; background: var(--accent); border-radius: var(--radius-lg); overflow: hidden; }
+.sp-logo { padding: 20px 16px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sp-logo-text { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: #fff; }
+.sp-logo-sub { font-size: 10px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.sp-pill { margin: 12px 16px 0; background: rgba(255,255,255,0.12); border-radius: 6px; padding: 5px 10px; font-size: 11px; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 6px; }
+.sp-dot { width: 6px; height: 6px; border-radius: 50%; background: #7ECBA3; }
+.sp-nav { padding: 12px 10px; }
+.sp-section { font-size: 9px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase; padding: 0 8px; margin-bottom: 4px; margin-top: 12px; }
+.sp-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 7px; margin-bottom: 2px; font-size: 12px; color: rgba(255,255,255,0.65); }
+.sp-item.active { background: rgba(255,255,255,0.16); color: #fff; font-weight: 500; }
+.sp-icon { font-size: 13px; width: 16px; text-align: center; }
+.sp-badge { margin-left: auto; background: #E05C2A; color: #fff; font-size: 9px; font-weight: 600; padding: 1px 5px; border-radius: 10px; }
+
+/* ─── QUEUE ITEM ─── */
+.queue-item { display: flex; gap: 12px; padding: 14px 16px; border: 1px solid var(--border-light); border-radius: var(--radius); background: var(--surface); align-items: center; margin-bottom: 8px; }
+.qi-avatar { width: 36px; height: 36px; border-radius: 9px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; color: var(--accent); flex-shrink: 0; }
+.qi-info { flex: 1; min-width: 0; }
+.qi-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.qi-cert { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.qi-poin { font-size: 12px; font-weight: 600; color: var(--accent); margin: 0 10px; }
+.qi-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.btn-approve { background: var(--accent-light); color: var(--accent); border: none; padding: 7px 12px; border-radius: 7px; font-size: 12px; font-weight: 500; font-family: inherit; cursor: default; }
+.btn-reject { background: var(--red-light); color: var(--red); border: none; padding: 7px 12px; border-radius: 7px; font-size: 12px; font-weight: 500; font-family: inherit; cursor: default; }
+
+/* ─── NOTIF ITEM ─── */
+.notif-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-light); align-items: flex-start; }
+.notif-item:last-child { border-bottom: none; }
+.notif-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.notif-text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.notif-text strong { color: var(--text); font-weight: 500; }
+.notif-time { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+/* ─── PROGRESS ─── */
+.prog-row { margin-bottom: 12px; }
+.prog-top { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+.prog-bg { background: var(--border-light); border-radius: 100px; height: 7px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 100px; }
+
+/* ─── TABLE ─── */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-3); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border-light); background: var(--surface2); }
+tbody td { padding: 12px 14px; border-bottom: 1px solid var(--border-light); color: var(--text-2); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+.td-name { color: var(--text); font-weight: 500; }
+
+/* ─── TABS ─── */
+.tabs { display: flex; border-bottom: 1px solid var(--border-light); margin-bottom: 0; }
+.tab-btn { padding: 10px 16px; font-size: 13px; color: var(--text-3); border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: inherit; background: none; border-top: none; border-left: none; border-right: none; font-weight: 400; cursor: default; }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+
+/* ─── UPLOAD ZONE ─── */
+.upload-zone { border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: 32px; text-align: center; background: var(--surface); }
+.upload-icon { font-size: 28px; margin-bottom: 10px; }
+.upload-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.upload-sub { font-size: 12px; color: var(--text-3); }
+
+/* ─── DEADLINE ─── */
+.dl-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border-light); font-size: 13px; }
+.dl-item:last-child { border-bottom: none; }
+.dl-chip { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
+.dl-chip.urgent { background: #FCEAEA; color: var(--red); }
+.dl-chip.soon { background: var(--amber-light); color: var(--amber); }
+.dl-chip.ok { background: var(--accent-light); color: var(--accent); }
+
+/* ─── TOPBAR ─── */
+.topbar-preview { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+.tp-title { font-size: 16px; font-weight: 600; color: var(--text); }
+.tp-sub { font-size: 12px; color: var(--text-3); margin-top: 1px; }
+.notif-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 15px; position: relative; flex-shrink: 0; }
+.notif-dot-btn { position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: #E05C2A; border: 2px solid #fff; }
+
+/* ─── ICON SYSTEM ─── */
+.icon-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+.icon-item { background: var(--surface); border: 1px solid var(--border-light); border-radius: 10px; padding: 16px 8px; text-align: center; }
+.icon-sym { font-size: 20px; display: block; margin-bottom: 6px; }
+.icon-name { font-size: 10px; color: var(--text-3); font-family: 'DM Mono', monospace; }
+
+/* ─── PRINCIPLE CARDS ─── */
+.principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.principle-card { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 24px; }
+.pc-num { font-family: 'Fraunces', serif; font-size: 40px; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: 12px; }
+.pc-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.pc-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+.pc-tag { display: inline-block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 5px; margin-bottom: 14px; }
+
+/* ─── GRID LAYOUTS ─── */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+
+/* ─── DIVIDER ─── */
+.divider { height: 1px; background: var(--border-light); margin: 32px 0; }
+
+/* ─── DO / DONT ─── */
+.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.do-box { border: 2px solid #1D9E75; border-radius: var(--radius-lg); overflow: hidden; }
+.dont-box { border: 2px solid #C0392B; border-radius: var(--radius-lg); overflow: hidden; }
+.do-label { background: #1D9E75; color: #fff; font-size: 11px; font-weight: 700; padding: 5px 14px; letter-spacing: 0.5px; }
+.dont-label { background: #C0392B; color: #fff; font-size: 11px; font-weight: 700; padding: 5px 14px; letter-spacing: 0.5px; }
+.dd-body { padding: 20px; background: var(--surface); }
+.dd-note { font-size: 12px; color: var(--text-2); margin-top: 12px; line-height: 1.5; }
+
+/* ─── ROLE CHIP ─── */
+.role-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 500; }
+.role-mhs { background: var(--accent-light); color: var(--accent); }
+.role-admin { background: var(--blue-light); color: var(--blue); }
+.role-super { background: var(--gold-light); color: var(--gold); }
+
+/* ─── SEPARATOR LINE ─── */
+.sep { width: 40px; height: 3px; background: var(--accent-mid); border-radius: 2px; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="ds-wrap">
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- COVER -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-left">
+      <div class="cover-logo">Sisakti+</div>
+      <div class="cover-sub">Design System · Universitas Udayana</div>
+      <div class="cover-pills">
+        <span class="cover-pill">Style Guide</span>
+        <span class="cover-pill">UI Components</span>
+        <span class="cover-pill">Design Principles</span>
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="cover-label">Versi</div>
+      <div class="cover-version">v1.0</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- TABLE OF CONTENTS -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-eyebrow">Overview</div>
+    <div class="section-title">Design System</div>
+    <div class="section-desc">Panduan lengkap komponen, gaya, dan prinsip desain untuk Sisakti+ — Sistem Validasi SKP Universitas Udayana. Digunakan oleh tim desainer dan developer untuk menjaga konsistensi visual di seluruh halaman.</div>
+    <div class="toc-grid">
+      <div class="toc-item"><div class="toc-num">01</div><div><div class="toc-label">Style Guide</div><div class="toc-sub">Warna, tipografi, spasi</div></div></div>
+      <div class="toc-item"><div class="toc-num">02</div><div><div class="toc-label">Komponen UI</div><div class="toc-sub">Button, form, card, navigasi</div></div></div>
+      <div class="toc-item"><div class="toc-num">03</div><div><div class="toc-label">Prinsip Desain</div><div class="toc-sub">Perilaku, layout, standar</div></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION 01 — STYLE GUIDE -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-eyebrow">01 — Style Guide</div>
+    <div class="section-title">Panduan Gaya</div>
+    <div class="section-desc">Aturan visual dasar yang menjadi fondasi seluruh tampilan Sisakti+. Setiap keputusan desain harus mengacu pada token di bawah ini.</div>
+
+    <!-- ─ COLOR ─ -->
+    <div class="subsection-title">Warna Utama</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#1B4D3E;"></div>
+        <div class="swatch-info"><div class="swatch-name">Forest Green</div><div class="swatch-hex">#1B4D3E</div><div class="swatch-role">Primary / Accent</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#4A8C72;"></div>
+        <div class="swatch-info"><div class="swatch-name">Sage Green</div><div class="swatch-hex">#4A8C72</div><div class="swatch-role">Accent Mid</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#E8F0EC;"></div>
+        <div class="swatch-info"><div class="swatch-name">Mint Tint</div><div class="swatch-hex">#E8F0EC</div><div class="swatch-role">Accent Light</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#F5F3EE;"></div>
+        <div class="swatch-info"><div class="swatch-name">Parchment</div><div class="swatch-hex">#F5F3EE</div><div class="swatch-role">Background</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#EEEAE2;"></div>
+        <div class="swatch-info"><div class="swatch-name">Sand</div><div class="swatch-hex">#EEEAE2</div><div class="swatch-role">Surface 2</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#FFFFFF; border:1px solid #E8E4DC;"></div>
+        <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-role">Surface / Card</div></div>
+      </div>
+    </div>
+
+    <div class="subsection-title">Warna Semantik</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#1D9E75;"></div>
+        <div class="swatch-info"><div class="swatch-name">Success Green</div><div class="swatch-hex">#1D9E75</div><div class="swatch-role">Disetujui / Sukses</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#C0392B;"></div>
+        <div class="swatch-info"><div class="swatch-name">Danger Red</div><div class="swatch-hex">#C0392B</div><div class="swatch-role">Ditolak / Error</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#B8860B;"></div>
+        <div class="swatch-info"><div class="swatch-name">Warning Gold</div><div class="swatch-hex">#B8860B</div><div class="swatch-role">Pending / Perhatian</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#2563EB;"></div>
+        <div class="swatch-info"><div class="swatch-name">Info Blue</div><div class="swatch-hex">#2563EB</div><div class="swatch-role">Informasi / Wajib</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#E05C2A;"></div>
+        <div class="swatch-info"><div class="swatch-name">Alert Orange</div><div class="swatch-hex">#E05C2A</div><div class="swatch-role">Notifikasi / Badge</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#D8D3C8;"></div>
+        <div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#D8D3C8</div><div class="swatch-role">Garis pembatas</div></div>
+      </div>
+    </div>
+
+    <div class="subsection-title">Warna Teks</div>
+    <div class="color-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#1A1714;"></div>
+        <div class="swatch-info"><div class="swatch-name">Text Primary</div><div class="swatch-hex">#1A1714</div><div class="swatch-role">Judul, konten utama</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#5C5750;"></div>
+        <div class="swatch-info"><div class="swatch-name">Text Secondary</div><div class="swatch-hex">#5C5750</div><div class="swatch-role">Body text, keterangan</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#9A9489;"></div>
+        <div class="swatch-info"><div class="swatch-name">Text Tertiary</div><div class="swatch-hex">#9A9489</div><div class="swatch-role">Placeholder, label kecil</div></div>
+      </div>
+    </div>
+
+    <!-- ─ TYPOGRAPHY ─ -->
+    <div class="subsection-title">Tipografi</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 8px 20px; margin-bottom: 24px;">
+      <div class="type-row">
+        <div class="type-meta"><strong>Display / Heading</strong>Fraunces — Serif</div>
+        <div style="font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--text);line-height:1;">Sisakti Plus</div>
+        <div class="type-size">32px / 36px</div>
+        <div class="type-weight">600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Section Title</strong>Fraunces — Serif</div>
+        <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--text);">Rekap SKP Mahasiswa</div>
+        <div class="type-size">24px</div>
+        <div class="type-weight">600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Metric Value</strong>Fraunces — Serif</div>
+        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--text);">82</div>
+        <div class="type-size">28px</div>
+        <div class="type-weight">600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Card Title</strong>DM Sans — Sans</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);">Progress per Kategori</div>
+        <div class="type-size">14px</div>
+        <div class="type-weight">600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Body / Content</strong>DM Sans — Sans</div>
+        <div style="font-size:13px;font-weight:400;color:var(--text-2);">Sertifikat menunggu validasi dari Admin BEM.</div>
+        <div class="type-size">13px</div>
+        <div class="type-weight">400</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Label / Caption</strong>DM Sans — Sans</div>
+        <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;">Kategori SKP</div>
+        <div class="type-size">11px</div>
+        <div class="type-weight">500</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Code / Token</strong>DM Mono — Mono</div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text-2);">2208561001</div>
+        <div class="type-size">12px</div>
+        <div class="type-weight">400</div>
+      </div>
+    </div>
+
+    <!-- ─ FONT PAIRING ─ -->
+    <div style="background: var(--accent); border-radius: var(--radius-lg); padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Font Pairing</div>
+        <div style="font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:#fff;line-height:1;">Fraunces</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px;">Display & metric values</div>
+      </div>
+      <div style="font-size:36px;color:rgba(255,255,255,0.2);font-weight:300;">+</div>
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Font Pairing</div>
+        <div style="font-size:28px;font-weight:500;color:#fff;line-height:1;">DM Sans</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px;">Body, labels, UI elements</div>
+      </div>
+      <div style="font-size:36px;color:rgba(255,255,255,0.2);font-weight:300;">+</div>
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Font Pairing</div>
+        <div style="font-family:'DM Mono',monospace;font-size:24px;color:#fff;line-height:1;">DM Mono</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px;">NIM, kode, data teknis</div>
+      </div>
+    </div>
+
+    <!-- ─ SPACING ─ -->
+    <div class="subsection-title">Spasi (Spacing Scale)</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 20px 24px; margin-bottom: 24px;">
+      <div class="spacing-row"><div class="spacing-box" style="width:4px;"></div><div class="spacing-label">4px — Micro (icon gap, dot margin)</div><div class="spacing-token">sp-1</div></div>
+      <div class="spacing-row"><div class="spacing-box" style="width:8px;"></div><div class="spacing-label">8px — XS (komponen internal)</div><div class="spacing-token">sp-2</div></div>
+      <div class="spacing-row"><div class="spacing-box" style="width:12px;"></div><div class="spacing-label">12px — S (gap antar elemen kecil)</div><div class="spacing-token">sp-3</div></div>
+      <div class="spacing-row"><div class="spacing-box" style="width:16px;"></div><div class="spacing-label">16px — M (padding card, gap form)</div><div class="spacing-token">sp-4</div></div>
+      <div class="spacing-row"><div class="spacing-box" style="width:20px;"></div><div class="spacing-label">20px — L (padding card besar)</div><div class="spacing-token">sp-5</div></div>
+      <div class="spacing-row"><div class="spacing-box" style="width:28px;"></div><div class="spacing-label">28px — XL (padding konten utama)</div><div class="spacing-token">sp-7</div></div>
+      <div class="spacing-row"><div class="spacing-box" style="width:48px;"></div><div class="spacing-label">48px — 2XL (section header)</div><div class="spacing-token">sp-12</div></div>
+    </div>
+
+    <!-- ─ RADIUS ─ -->
+    <div class="subsection-title">Border Radius</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 20px 24px; margin-bottom: 24px;">
+      <div class="radius-row"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">4px — Micro (progress bar, dot)</div><div class="radius-token">r-xs</div></div>
+      <div class="radius-row"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px — XS (badge kecil, role pill)</div><div class="radius-token">r-sm</div></div>
+      <div class="radius-row"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px — S (nav item, button outline)</div><div class="radius-token">r-md</div></div>
+      <div class="radius-row"><div class="radius-box" style="border-radius:10px;"></div><div class="radius-label">10px — M (queue item, input)</div><div class="radius-token">r-default</div></div>
+      <div class="radius-row"><div class="radius-box" style="border-radius:16px;"></div><div class="radius-label">16px — L (card, metric card)</div><div class="radius-token">r-lg</div></div>
+      <div class="radius-row"><div class="radius-box" style="border-radius:20px;"></div><div class="radius-label">20px — XL (login card, modal)</div><div class="radius-token">r-xl</div></div>
+      <div class="radius-row"><div class="radius-box" style="border-radius:100px;"></div><div class="radius-label">100px — Full (badge, progress, chip)</div><div class="radius-token">r-full</div></div>
+    </div>
+
+    <!-- ─ ICONS ─ -->
+    <div class="subsection-title">Sistem Ikon</div>
+    <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:16px;">Sisakti+ menggunakan ikon sistem Unicode sebagai placeholder dalam prototype. Pada implementasi produksi, gunakan library Lucide Icons dengan ukuran 16×16px atau 20×20px.</p>
+    <div class="icon-grid">
+      <div class="icon-item"><span class="icon-sym">◼</span><span class="icon-name">dashboard</span></div>
+      <div class="icon-item"><span class="icon-sym">↑</span><span class="icon-name">upload</span></div>
+      <div class="icon-item"><span class="icon-sym">☰</span><span class="icon-name">list</span></div>
+      <div class="icon-item"><span class="icon-sym">◎</span><span class="icon-name">recap</span></div>
+      <div class="icon-item"><span class="icon-sym">◉</span><span class="icon-name">notif</span></div>
+      <div class="icon-item"><span class="icon-sym">⊕</span><span class="icon-name">validate</span></div>
+      <div class="icon-item"><span class="icon-sym">⊞</span><span class="icon-name">settings</span></div>
+      <div class="icon-item"><span class="icon-sym">🔔</span><span class="icon-name">bell</span></div>
+      <div class="icon-item"><span class="icon-sym">✅</span><span class="icon-name">approved</span></div>
+      <div class="icon-item"><span class="icon-sym">❌</span><span class="icon-name">rejected</span></div>
+      <div class="icon-item"><span class="icon-sym">⏳</span><span class="icon-name">pending</span></div>
+      <div class="icon-item"><span class="icon-sym">🏅</span><span class="icon-name">medal</span></div>
+      <div class="icon-item"><span class="icon-sym">📋</span><span class="icon-name">queue</span></div>
+      <div class="icon-item"><span class="icon-sym">👥</span><span class="icon-name">users</span></div>
+      <div class="icon-item"><span class="icon-sym">📎</span><span class="icon-name">attach</span></div>
+      <div class="icon-item"><span class="icon-sym">→</span><span class="icon-name">arrow</span></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION 02 — UI COMPONENTS -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-eyebrow">02 — Komponen UI</div>
+    <div class="section-title">Komponen Siap Pakai</div>
+    <div class="section-desc">Semua elemen antarmuka yang digunakan di seluruh halaman Sisakti+. Setiap komponen tersedia dalam beberapa varian dan memiliki aturan penggunaan tersendiri.</div>
+
+    <!-- ─ BUTTONS ─ -->
+    <div class="subsection-title">Button</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 24px; margin-bottom: 12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Varian Utama</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:24px;">
+        <button class="btn btn-primary">+ Upload Sertifikat</button>
+        <button class="btn btn-secondary">Export Data</button>
+        <button class="btn btn-outline">Batal</button>
+        <button class="btn btn-danger">Tolak</button>
+        <button class="btn btn-ghost">Lihat semua →</button>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Ukuran</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:24px;">
+        <button class="btn btn-primary btn-lg">Button Large</button>
+        <button class="btn btn-primary">Button Default</button>
+        <button class="btn btn-primary btn-sm">Button Small</button>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Validasi Actions</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:24px;">
+        <button class="btn-approve" style="font-family:inherit;">Setujui</button>
+        <button class="btn-reject" style="font-family:inherit;">Tolak</button>
+        <button class="btn btn-primary btn-disabled">Disabled</button>
+        <span style="font-size:11px;color:var(--text-3);">opacity: 0.4 saat disabled</span>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Full Width</div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;">Masuk ke Sisakti+</button>
+    </div>
+
+    <!-- ─ BADGES ─ -->
+    <div class="subsection-title">Badge & Status</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 24px; margin-bottom: 12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Status Sertifikat</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-green"><span class="badge-dot" style="background:#1D9E75;"></span>Disetujui</span>
+        <span class="badge badge-amber"><span class="badge-dot" style="background:#B8860B;"></span>Pending</span>
+        <span class="badge badge-red"><span class="badge-dot" style="background:#C0392B;"></span>Ditolak</span>
+        <span class="badge badge-blue">Wajib</span>
+        <span class="badge badge-gray">Seminar</span>
+        <span class="badge badge-gray">Kepanitiaan</span>
+        <span class="badge badge-gray">Kompetisi</span>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Status Mahasiswa</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-green">Lengkap</span>
+        <span class="badge badge-amber">Kurang</span>
+        <span class="badge badge-red">Belum ada</span>
+        <span class="badge badge-blue">Siap Lulus</span>
+        <span class="badge badge-red">Perlu Perhatian</span>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Role Chip</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="role-chip role-mhs">● Mahasiswa</span>
+        <span class="role-chip role-admin">● Admin BEM</span>
+        <span class="role-chip role-super">● Superadmin</span>
+        <span style="background:#E05C2A;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;">3</span>
+        <span style="background:#E05C2A;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;">24</span>
+        <span style="font-size:12px;color:var(--text-3);margin-left:4px;">← Notification badge</span>
+      </div>
+    </div>
+
+    <!-- ─ FORM ─ -->
+    <div class="subsection-title">Form Elements</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 24px; margin-bottom: 12px; max-width: 700px;">
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">Nama Kegiatan</label>
+          <input class="form-input" value="Seminar AI & Machine Learning 2024">
+          <div class="form-help">Tuliskan nama lengkap kegiatan.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Kategori SKP</label>
+          <select class="form-input">
+            <option>Seminar & Pelatihan</option>
+            <option>Organisasi & Kepanitiaan</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">Input — Error State</label>
+          <input class="form-input error" value="format-salah">
+          <div class="form-error">Format tidak valid. Gunakan huruf kapital.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Input — Success State</label>
+          <input class="form-input success" value="2208561001">
+          <div class="form-success">NIM ditemukan dalam sistem.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Keterangan Tambahan</label>
+        <textarea class="form-input" rows="3" placeholder="Tuliskan informasi tambahan jika perlu..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Input — Disabled</label>
+        <input class="form-input" value="2208561001" style="opacity:0.5;cursor:not-allowed;" readonly>
+      </div>
+    </div>
+
+    <!-- ─ UPLOAD ZONE ─ -->
+    <div class="subsection-title">Upload Zone</div>
+    <div style="max-width:500px;margin-bottom:12px;">
+      <div class="upload-zone">
+        <div class="upload-icon">📎</div>
+        <div class="upload-title">Upload Sertifikat</div>
+        <div class="upload-sub">Klik atau drag & drop file PDF / JPG / PNG (maks. 5MB)</div>
+      </div>
+    </div>
+
+    <!-- ─ CARDS ─ -->
+    <div class="subsection-title">Card</div>
+    <div class="grid3" style="margin-bottom:12px;">
+      <div class="card">
+        <div class="card-header"><span class="card-title">Card Default</span><span class="card-action">Lihat semua →</span></div>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.6;">Card standar dengan header, action link, dan konten. Padding 20px, radius 16px.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--accent);">
+        <div class="card-header"><span class="card-title">Card Accent</span></div>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.6;">Card dengan aksen border kiri untuk info penting atau highlight konten.</p>
+      </div>
+      <div class="card" style="background:var(--accent-light);">
+        <div class="card-header"><span class="card-title">Card Tinted</span></div>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.6;">Card dengan latar warna light untuk membedakan konteks atau kategori.</p>
+      </div>
+    </div>
+
+    <!-- ─ METRIC CARDS ─ -->
+    <div class="subsection-title">Metric Card</div>
+    <div class="grid4" style="margin-bottom:12px;">
+      <div class="metric-card mc-green">
+        <div class="m-label">Total SKP</div>
+        <div class="m-val">82</div>
+        <div class="m-sub up">↑ 68% tercapai</div>
+        <div class="m-icon">🏅</div>
+      </div>
+      <div class="metric-card mc-gold">
+        <div class="m-label">Pending</div>
+        <div class="m-val">3</div>
+        <div class="m-sub warn">menunggu validasi</div>
+        <div class="m-icon">⏳</div>
+      </div>
+      <div class="metric-card mc-blue">
+        <div class="m-label">Disetujui</div>
+        <div class="m-val">14</div>
+        <div class="m-sub up">dari 17 diajukan</div>
+        <div class="m-icon">✅</div>
+      </div>
+      <div class="metric-card mc-red">
+        <div class="m-label">Ditolak</div>
+        <div class="m-val">2</div>
+        <div class="m-sub down">perlu diperbaiki</div>
+        <div class="m-icon">❌</div>
+      </div>
+    </div>
+
+    <!-- ─ QUEUE ITEM ─ -->
+    <div class="subsection-title">Queue Item (Antrian Validasi)</div>
+    <div style="max-width:780px;margin-bottom:12px;">
+      <div class="queue-item">
+        <div class="qi-avatar">KD</div>
+        <div class="qi-info">
+          <div class="qi-name">Kadek Dewi Pratiwi — 2208561022</div>
+          <div class="qi-cert">Juara 2 Lomba Esai Tingkat Nasional — Kompetisi — 20 Jan 2024</div>
+        </div>
+        <div class="qi-poin">+10 SKP</div>
+        <div class="qi-actions">
+          <button class="btn-approve">Setujui</button>
+          <button class="btn-reject">Tolak</button>
+        </div>
+      </div>
+      <div class="queue-item" style="opacity:0.45;">
+        <div class="qi-avatar">IO</div>
+        <div class="qi-info">
+          <div class="qi-name">I Nyoman Oka — 2208561010</div>
+          <div class="qi-cert">Seminar Nasional Teknologi Informasi — Peserta — 15 Jan 2024</div>
+        </div>
+        <div class="qi-poin">+3 SKP</div>
+        <div class="qi-actions">
+          <button class="btn-approve" style="background:var(--accent);color:#fff;">✓ Disetujui</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ TABLE ─ -->
+    <div class="subsection-title">Tabel Data</div>
+    <div class="card" style="padding:0;margin-bottom:12px;">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Nama Kegiatan</th><th>Kategori</th><th>Tanggal</th><th>Poin</th><th>Status</th><th>Aksi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="td-name">PKKMB Universitas Udayana</td><td><span class="badge badge-blue">Wajib</span></td><td>Agt 2022</td><td style="font-weight:600;color:var(--accent);">+10</td><td><span class="badge badge-green">Disetujui</span></td><td><button class="btn btn-outline btn-sm">Lihat</button></td></tr>
+            <tr><td class="td-name">Panitia Dies Natalis 2024</td><td><span class="badge badge-gray">Kepanitiaan</span></td><td>Feb 2024</td><td style="color:var(--text-3);">5</td><td><span class="badge badge-amber">Pending</span></td><td><button class="btn btn-outline btn-sm">Lihat</button></td></tr>
+            <tr><td class="td-name">Workshop Desain UI/UX</td><td><span class="badge badge-gray">Seminar</span></td><td>Apr 2024</td><td style="color:var(--red);">—</td><td><span class="badge badge-red">Ditolak</span></td><td><button class="btn btn-primary btn-sm">Upload Ulang</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─ TABS ─ -->
+    <div class="subsection-title">Tab Navigation</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); overflow: hidden; margin-bottom: 12px;">
+      <div class="tabs" style="padding:0 20px;">
+        <button class="tab-btn active">Semua (17)</button>
+        <button class="tab-btn">Disetujui (14)</button>
+        <button class="tab-btn">Pending (3)</button>
+        <button class="tab-btn">Ditolak (2)</button>
+      </div>
+      <div style="padding:16px 20px;font-size:13px;color:var(--text-3);">Konten tab ditampilkan di sini...</div>
+    </div>
+
+    <!-- ─ PROGRESS ─ -->
+    <div class="subsection-title">Progress Bar</div>
+    <div class="card" style="max-width:600px;margin-bottom:12px;">
+      <div class="prog-row">
+        <div class="prog-top"><span style="color:var(--text-2);">Wajib (PKKMB, PKM, dll)</span><span style="font-weight:500;color:var(--text);">30 / 30</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:100%;background:#1D9E75;"></div></div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-top"><span style="color:var(--text-2);">Organisasi & Kepanitiaan</span><span style="font-weight:500;color:var(--text);">22 / 30</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:73%;background:#378ADD;"></div></div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-top"><span style="color:var(--text-2);">Pengabdian Masyarakat</span><span style="font-weight:500;color:#C0392B;">0 / 10</span></div>
+        <div class="prog-bg"><div class="prog-fill" style="width:0%;background:#E24B4A;"></div></div>
+      </div>
+    </div>
+
+    <!-- ─ NOTIF ─ -->
+    <div class="subsection-title">Notifikasi Item</div>
+    <div class="card" style="max-width:600px;margin-bottom:12px;">
+      <div class="notif-item">
+        <div class="notif-dot" style="background:#1D9E75;"></div>
+        <div><div class="notif-text"><strong>Sertifikat Seminar AI & ML disetujui</strong> — 3 SKP berhasil ditambahkan.</div><div class="notif-time">2 jam lalu</div></div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot" style="background:#C0392B;"></div>
+        <div><div class="notif-text"><strong>Workshop Desain UI/UX ditolak.</strong> Dokumen tidak terbaca. Silakan upload ulang.</div><div class="notif-time">5 jam lalu</div></div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot" style="background:#B8860B;"></div>
+        <div><div class="notif-text"><strong>Pengingat:</strong> Batas upload SKP wajib Student Day ditutup dalam <strong>3 hari</strong>.</div><div class="notif-time">1 hari lalu</div></div>
+      </div>
+    </div>
+
+    <!-- ─ DEADLINE ─ -->
+    <div class="subsection-title">Deadline Chip</div>
+    <div class="card" style="max-width:500px;margin-bottom:12px;">
+      <div class="dl-item"><span>Batas upload SKP wajib</span><span class="dl-chip urgent">3 hari lagi</span></div>
+      <div class="dl-item"><span>Pendaftaran Student Day</span><span class="dl-chip soon">12 Mei</span></div>
+      <div class="dl-item"><span>Validasi periode genap</span><span class="dl-chip ok">31 Mei</span></div>
+    </div>
+
+    <!-- ─ SIDEBAR ─ -->
+    <div class="subsection-title">Sidebar Navigasi</div>
+    <div style="display:flex;gap:16px;margin-bottom:12px;">
+      <div class="sidebar-preview">
+        <div class="sp-logo">
+          <div class="sp-logo-text">Sisakti+</div>
+          <div class="sp-logo-sub">Universitas Udayana</div>
+          <div class="sp-pill"><div class="sp-dot"></div>Mahasiswa</div>
+        </div>
+        <div class="sp-nav">
+          <div class="sp-item active"><span class="sp-icon">◼</span>Dashboard</div>
+          <div class="sp-section">Sertifikat</div>
+          <div class="sp-item"><span class="sp-icon">↑</span>Upload Sertifikat</div>
+          <div class="sp-item"><span class="sp-icon">☰</span>Daftar Sertifikat</div>
+          <div class="sp-item"><span class="sp-icon">◎</span>Rekap SKP</div>
+          <div class="sp-section">Lainnya</div>
+          <div class="sp-item"><span class="sp-icon">◉</span>Notifikasi<span class="sp-badge">3</span></div>
+        </div>
+      </div>
+      <div class="sidebar-preview">
+        <div class="sp-logo">
+          <div class="sp-logo-text">Sisakti+</div>
+          <div class="sp-logo-sub">Universitas Udayana</div>
+          <div class="sp-pill"><div class="sp-dot"></div>Admin BEM</div>
+        </div>
+        <div class="sp-nav">
+          <div class="sp-item active"><span class="sp-icon">◼</span>Dashboard</div>
+          <div class="sp-section">Validasi</div>
+          <div class="sp-item"><span class="sp-icon">⊕</span>Antrian Validasi<span class="sp-badge">24</span></div>
+          <div class="sp-item"><span class="sp-icon">☰</span>Data Mahasiswa</div>
+          <div class="sp-section">Lainnya</div>
+          <div class="sp-item"><span class="sp-icon">◉</span>Notifikasi</div>
+        </div>
+      </div>
+      <div class="sidebar-preview">
+        <div class="sp-logo">
+          <div class="sp-logo-text">Sisakti+</div>
+          <div class="sp-logo-sub">Universitas Udayana</div>
+          <div class="sp-pill"><div class="sp-dot"></div>Superadmin</div>
+        </div>
+        <div class="sp-nav">
+          <div class="sp-item active"><span class="sp-icon">◼</span>Dashboard</div>
+          <div class="sp-section">Pengaturan</div>
+          <div class="sp-item"><span class="sp-icon">☰</span>Manajemen Admin</div>
+          <div class="sp-item"><span class="sp-icon">⊞</span>Konfigurasi SKP</div>
+          <div class="sp-section">Lainnya</div>
+          <div class="sp-item"><span class="sp-icon">◉</span>Notifikasi</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ TOPBAR ─ -->
+    <div class="subsection-title">Topbar</div>
+    <div class="topbar-preview" style="margin-bottom:12px;">
+      <div>
+        <div class="tp-title">Dashboard</div>
+        <div class="tp-sub">Semester Genap 2024/2025</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="notif-btn">🔔<div class="notif-dot-btn"></div></div>
+        <button class="btn btn-primary">+ Upload Sertifikat</button>
+      </div>
+    </div>
+
+    <!-- ─ SKP RING ─ -->
+    <div class="subsection-title">SKP Progress Ring</div>
+    <div style="display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:20px;max-width:380px;margin-bottom:12px;">
+      <svg width="90" height="90" viewBox="0 0 90 90">
+        <circle cx="45" cy="45" r="36" fill="none" stroke="#EEEAE2" stroke-width="9"/>
+        <circle cx="45" cy="45" r="36" fill="none" stroke="#1B4D3E" stroke-width="9" stroke-dasharray="226" stroke-dashoffset="72" stroke-linecap="round" transform="rotate(-90 45 45)"/>
+        <text x="45" y="49" text-anchor="middle" font-family="Fraunces,serif" font-size="18" font-weight="600" fill="#1A1714">82</text>
+      </svg>
+      <div>
+        <div style="font-size:12px;color:var(--text-3);">Total SKP terkumpul</div>
+        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--text);">82 <span style="font-size:16px;color:var(--text-3);font-family:'DM Sans',sans-serif;">/ 120</span></div>
+        <div style="font-size:13px;color:var(--amber);margin-top:6px;font-weight:500;">Kurang 38 SKP lagi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION 03 — DESIGN PRINCIPLES -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-eyebrow">03 — Prinsip Desain</div>
+    <div class="section-title">Prinsip & Standar</div>
+    <div class="section-desc">Aturan yang harus dipahami oleh seluruh tim desain dan developer sebelum membuat atau mengubah halaman Sisakti+.</div>
+
+    <!-- ─ CORE PRINCIPLES ─ -->
+    <div class="subsection-title">Prinsip Inti</div>
+    <div class="principle-grid" style="margin-bottom:32px;">
+      <div class="principle-card">
+        <div class="pc-num">01</div>
+        <div class="pc-tag" style="background:var(--accent-light);color:var(--accent);">Clarity</div>
+        <div class="pc-title">Jelas Tanpa Noise</div>
+        <div class="pc-desc">Setiap elemen harus punya tujuan. Hindari dekorasi berlebihan. Prioritaskan keterbacaan informasi SKP di atas estetika semata.</div>
+      </div>
+      <div class="principle-card">
+        <div class="pc-num">02</div>
+        <div class="pc-tag" style="background:var(--blue-light);color:var(--blue);">Trust</div>
+        <div class="pc-title">Membangun Kepercayaan</div>
+        <div class="pc-desc">Warna hijau forest, tipografi serif yang kokoh, dan palet earth tone menciptakan rasa profesional dan dapat dipercaya untuk sistem validasi akademik.</div>
+      </div>
+      <div class="principle-card">
+        <div class="pc-num">03</div>
+        <div class="pc-tag" style="background:var(--amber-light);color:var(--amber);">Efficiency</div>
+        <div class="pc-title">Efisiensi Kerja</div>
+        <div class="pc-desc">Admin BEM perlu memvalidasi banyak sertifikat cepat. Desain harus mengurangi friction: tombol approve/reject prominent, filter mudah diakses.</div>
+      </div>
+      <div class="principle-card">
+        <div class="pc-num">04</div>
+        <div class="pc-tag" style="background:var(--red-light);color:var(--red);">Feedback</div>
+        <div class="pc-title">Umpan Balik Segera</div>
+        <div class="pc-desc">Setiap aksi harus memberikan respons visual: badge berubah, warna status, notifikasi muncul. Mahasiswa harus tahu statusnya tanpa bertanya.</div>
+      </div>
+      <div class="principle-card">
+        <div class="pc-num">05</div>
+        <div class="pc-tag" style="background:var(--accent-light);color:var(--accent);">Hierarchy</div>
+        <div class="pc-title">Hierarki Visual</div>
+        <div class="pc-desc">Total SKP adalah angka terpenting — tampilkan dengan Fraunces 28px bold. Label sekunder dengan DM Sans 11px. Jangan pernah membalik hierarki ini.</div>
+      </div>
+      <div class="principle-card">
+        <div class="pc-num">06</div>
+        <div class="pc-tag" style="background:var(--gold-light);color:var(--gold);">Role-based</div>
+        <div class="pc-title">Konteks Berbasis Peran</div>
+        <div class="pc-desc">Mahasiswa, Admin BEM, dan Superadmin memiliki kebutuhan berbeda. Sidebar, warna aksen notifikasi, dan CTA utama harus mencerminkan peran pengguna.</div>
+      </div>
+    </div>
+
+    <!-- ─ LAYOUT RULES ─ -->
+    <div class="subsection-title">Aturan Layout</div>
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;">Grid System</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.7;">
+            • Sidebar: <strong>240px fixed</strong>, lebar tetap<br>
+            • Konten utama: <strong>flex: 1</strong>, mengisi sisa<br>
+            • Total canvas: <strong>1280px</strong> width<br>
+            • Padding konten: <strong>28px</strong> semua sisi<br>
+            • Grid 2 kolom: <strong>gap 16px</strong><br>
+            • Grid 4 kolom: <strong>gap 14px</strong>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;">Komponen Hierarchy</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.7;">
+            1. Topbar — sticky, selalu terlihat<br>
+            2. Metric cards — 4 kolom di atas halaman<br>
+            3. Grid 2 kolom — konten utama<br>
+            4. Full-width card — tabel dan list<br>
+            5. Sidebar — navigasi sekunder
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;">Warna Status (Wajib)</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.7;">
+            • Disetujui: <span style="color:#1D9E75;font-weight:500;">#1D9E75 Green</span><br>
+            • Ditolak: <span style="color:#C0392B;font-weight:500;">#C0392B Red</span><br>
+            • Pending: <span style="color:#B8860B;font-weight:500;">#B8860B Gold</span><br>
+            • Wajib/Info: <span style="color:#2563EB;font-weight:500;">#2563EB Blue</span><br>
+            • Notif badge: <span style="color:#E05C2A;font-weight:500;">#E05C2A Orange</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;">Z-Index Stack</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.7;">
+            • Sidebar: z-index 100<br>
+            • Topbar: z-index 50<br>
+            • Modal overlay: z-index 300<br>
+            • Notif dropdown: z-index 200<br>
+            • Role switcher (demo): z-index 200
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ DO / DONT ─ -->
+    <div class="subsection-title">Do & Don't</div>
+    <div class="do-dont-grid">
+      <div class="do-box">
+        <div class="do-label">✓ DO — Warna status konsisten</div>
+        <div class="dd-body">
+          <div style="display:flex;gap:8px;">
+            <span class="badge badge-green">Disetujui</span>
+            <span class="badge badge-amber">Pending</span>
+            <span class="badge badge-red">Ditolak</span>
+          </div>
+          <div class="dd-note">Selalu gunakan warna semantik yang sama untuk status yang sama di seluruh halaman.</div>
+        </div>
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">✗ DON'T — Warna acak-acakan</div>
+        <div class="dd-body">
+          <div style="display:flex;gap:8px;">
+            <span class="badge" style="background:#9B59B6;color:#fff;">Disetujui</span>
+            <span class="badge" style="background:#3498DB;color:#fff;">Pending</span>
+            <span class="badge" style="background:#E67E22;color:#fff;">Ditolak</span>
+          </div>
+          <div class="dd-note">Jangan gunakan warna berbeda untuk status yang sama. Pengguna akan bingung membaca feedback visual.</div>
+        </div>
+      </div>
+    </div>
+    <div class="do-dont-grid">
+      <div class="do-box">
+        <div class="do-label">✓ DO — Label huruf kapital kecil</div>
+        <div class="dd-body">
+          <div style="font-size:11px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;">Kategori SKP</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-top:6px;">Progress per Kategori</div>
+          <div class="dd-note">Gunakan uppercase untuk label form. Gunakan sentence case untuk judul card.</div>
+        </div>
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">✗ DON'T — Inkonsistensi casing</div>
+        <div class="dd-body">
+          <div style="font-size:11px;font-weight:600;color:var(--text-2);">Kategori Skp</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-top:6px;text-transform:uppercase;">PROGRESS PER KATEGORI</div>
+          <div class="dd-note">Jangan campur aturan casing secara acak. Judul card tidak perlu all-caps.</div>
+        </div>
+      </div>
+    </div>
+    <div class="do-dont-grid">
+      <div class="do-box">
+        <div class="do-label">✓ DO — Fraunces untuk angka besar</div>
+        <div class="dd-body">
+          <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--text);">82 <span style="font-size:16px;color:var(--text-3);font-family:'DM Sans',sans-serif;">/ 120</span></div>
+          <div class="dd-note">Angka SKP utama selalu pakai Fraunces serif. Angka sekunder / total pakai DM Sans kecil.</div>
+        </div>
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">✗ DON'T — DM Sans untuk metric utama</div>
+        <div class="dd-body">
+          <div style="font-size:28px;font-weight:700;color:var(--text);">82 / 120</div>
+          <div class="dd-note">Jangan gunakan DM Sans tebal untuk angka metric utama. Kehilangan karakter dan keterbacaan.</div>
+        </div>
+      </div>
+    </div>
+    <div class="do-dont-grid">
+      <div class="do-box">
+        <div class="do-label">✓ DO — Sidebar sidebar always visible</div>
+        <div class="dd-body">
+          <div style="font-size:13px;color:var(--text-2);line-height:1.6;">Sidebar 240px selalu tampil di sisi kiri. Navigasi tetap konsisten di semua halaman dalam satu role. Active state selalu terlihat.</div>
+          <div class="dd-note">Pengguna perlu orientasi yang konsisten saat berpindah halaman.</div>
+        </div>
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">✗ DON'T — Collapsed sidebar tanpa trigger</div>
+        <div class="dd-body">
+          <div style="font-size:13px;color:var(--text-2);line-height:1.6;">Jangan sembunyikan sidebar tanpa indikator yang jelas. Jangan ubah urutan menu antar halaman. Jangan hilangkan active state.</div>
+          <div class="dd-note">Sidebar yang tidak konsisten meningkatkan cognitive load pengguna.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ INTERACTION STATES ─ -->
+    <div class="subsection-title">Interaction States</div>
+    <div style="background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 24px; margin-bottom: 32px;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
+        <div style="text-align:center;">
+          <div style="font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Default</div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;">Setujui</button>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Hover</div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;background:#143D31;">Setujui</button>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Active</div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;background:#0F2E25;transform:scale(0.98);">Setujui</button>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Disabled</div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;opacity:0.4;cursor:not-allowed;">Setujui</button>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Loading</div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;opacity:0.7;">⟳ Menyimpan...</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ ACCESSIBILITY ─ -->
+    <div class="subsection-title">Aksesibilitas & Standar Kualitas</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px;">
+      <div class="card">
+        <div style="font-size:24px;margin-bottom:10px;">🎨</div>
+        <div class="pc-title" style="margin-bottom:8px;">Color Contrast</div>
+        <div class="pc-desc">Semua teks body memenuhi WCAG AA (4.5:1). Teks di atas background hijau forest (#1B4D3E) menggunakan putih atau rgba(255,255,255,0.9).</div>
+      </div>
+      <div class="card">
+        <div style="font-size:24px;margin-bottom:10px;">📱</div>
+        <div class="pc-title" style="margin-bottom:8px;">Touch Target</div>
+        <div class="pc-desc">Minimum ukuran tombol dan elemen interaktif adalah 36×36px. Tombol approve/reject di queue item minimal 80px lebar agar mudah diklik.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:24px;margin-bottom:10px;">⌨️</div>
+        <div class="pc-title" style="margin-bottom:8px;">Focus State</div>
+        <div class="pc-desc">Setiap input dan tombol harus punya focus ring yang jelas: box-shadow 0 0 0 3px rgba(74,140,114,0.25). Jangan hilangkan outline bawaan browser tanpa pengganti.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:24px;margin-bottom:10px;">📊</div>
+        <div class="pc-title" style="margin-bottom:8px;">Feedback Visual</div>
+        <div class="pc-desc">Setiap perubahan status harus ada visual feedback: warna badge berubah, toast notification muncul, atau elemen fade-out saat selesai diproses.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:24px;margin-bottom:10px;">🔤</div>
+        <div class="pc-title" style="margin-bottom:8px;">Font Minimum</div>
+        <div class="pc-desc">Ukuran font minimum di seluruh aplikasi adalah 11px untuk label uppercase. Konten body minimal 13px. Jangan gunakan font di bawah 11px untuk informasi apapun.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:24px;margin-bottom:10px;">⚡</div>
+        <div class="pc-title" style="margin-bottom:8px;">Loading States</div>
+        <div class="pc-desc">Saat data sedang dimuat, tampilkan skeleton placeholder atau spinner. Jangan biarkan konten "loncat" setelah data loaded. Gunakan consistent height untuk placeholder.</div>
+      </div>
+    </div>
+
+    <!-- ─ EMPTY STATES ─ -->
+    <div class="subsection-title">Empty States</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px;">
+      <div class="card" style="text-align:center;padding:32px 20px;">
+        <div style="font-size:32px;margin-bottom:12px;">📭</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Belum ada sertifikat</div>
+        <div style="font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.6;">Upload sertifikat pertama kamu untuk mulai mengumpulkan SKP.</div>
+        <button class="btn btn-primary btn-sm" style="margin:0 auto;">+ Upload Sertifikat</button>
+      </div>
+      <div class="card" style="text-align:center;padding:32px 20px;">
+        <div style="font-size:32px;margin-bottom:12px;">✅</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Antrian kosong</div>
+        <div style="font-size:12px;color:var(--text-3);line-height:1.6;">Semua sertifikat sudah divalidasi. Tidak ada yang menunggu antrian.</div>
+      </div>
+      <div class="card" style="text-align:center;padding:32px 20px;">
+        <div style="font-size:32px;margin-bottom:12px;">🔍</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Tidak ditemukan</div>
+        <div style="font-size:12px;color:var(--text-3);line-height:1.6;">Tidak ada hasil untuk pencarian "<strong style="color:var(--text);">nama mahasiswa</strong>".</div>
+      </div>
+    </div>
+
+    <!-- ─ FOOTER ─ -->
+    <div style="background: var(--accent); border-radius: var(--radius-lg); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#fff;">Sisakti+ Design System</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">Universitas Udayana · v1.0 · 2025</div>
+      </div>
+      <div style="display:flex;gap:24px;">
+        <div style="text-align:center;">
+          <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:#fff;">12</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;">Halaman</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:#fff;">18</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;">Komponen</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:#fff;">3</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;">Role User</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
